@@ -10,7 +10,7 @@
         /* General page setup for printing */
         @page {
             size: A4 portrait;
-            margin: 0.5cm; /* Reduced margin slightly for more space */
+            margin: 0.4cm; /* Further reduced margin */
         }
         
         body {
@@ -43,11 +43,10 @@
 
             html, body {
                 width: 210mm; /* A4 width */
-                height: 297mm; /* A4 height */
                 margin: 0;
                 padding: 0;
                 font-size: 8px; /* Base font size for print */
-                line-height: 1.2;
+                line-height: 1.15; /* Slightly reduced line height */
             }
             
             .form-container {
@@ -65,16 +64,22 @@
                 display: none !important;
             }
             
+            /* Fix for header info boxes layout on desktop print */
+            .info-boxes {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+            }
+            
             /* Compact layout adjustments */
             .section-title {
                 font-size: 10px;
                 padding: 4px;
-                margin: 8px 0 5px 0;
+                margin: 6px 0 4px 0; /* Reduced vertical margin */
             }
             
             table {
                 font-size: 7px;
-                margin-bottom: 6px;
+                margin-bottom: 5px; /* Reduced margin */
                 page-break-inside: avoid;
             }
             
@@ -84,7 +89,7 @@
             }
             
             .header-content {
-                padding: 10px !important;
+                padding: 8px !important; /* Reduced padding */
             }
             
             .header-content h1 {
@@ -103,9 +108,9 @@
             }
             
             .checkbox-list {
-                font-size: 7px; /* Slightly larger for readability */
+                font-size: 7px;
                 line-height: 1.1;
-                padding: 4px;
+                padding: 3px; /* Reduced padding */
             }
             
             .checkbox-list label {
@@ -120,26 +125,26 @@
             }
             
             .recommendations-section {
-                margin-top: 6px;
-                padding: 6px;
+                margin-top: 5px; /* Reduced margin */
+                padding: 5px; /* Reduced padding */
             }
             
             .recommendations-title {
                 font-size: 8px;
                 padding: 4px;
-                margin: -6px -6px 6px -6px;
+                margin: -5px -5px 5px -5px; /* Adjusted for new padding */
             }
             
             .recommendations-grid {
-                gap: 6px;
+                gap: 4px; /* Reduced gap */
             }
             
             .footer-image {
-                height: 45px; /* Reduced footer image size */
+                height: 40px; /* Reduced footer image size */
             }
             
             #dailyReport, #weeklyReport {
-                padding: 10px !important;
+                padding: 8px !important; /* Reduced padding */
             }
 
             .form-checkbox {
@@ -167,13 +172,13 @@
             
             .recommendations-grid {
                 grid-template-columns: 1fr 1fr;
-                gap: 8px;
+                gap: 6px;
             }
             
             .goals-achievement-section {
                 display: grid !important;
                 grid-template-columns: 1fr 1fr !important;
-                gap: 8px !important;
+                gap: 6px !important; /* Reduced gap */
             }
             
             .goals-achievement-section .recommendations-section {
@@ -440,7 +445,7 @@
                 <div class="recommendations-section">
                     <div class="recommendations-title">أهداف الدرس</div>
                     <div class="p-4">
-                        <textarea rows="4" class="w-full border border-gray-300 rounded p-2" placeholder="اكتب أهداف الدرس..."></textarea>
+                        <textarea rows="3" class="w-full border border-gray-300 rounded p-2" placeholder="اكتب أهداف الدرس..."></textarea>
                     </div>
                 </div>
                 <div class="recommendations-section">
@@ -553,7 +558,7 @@
                         </select>
                     </td>
                     <td><input type="text" placeholder="مثال: الفترة الأولى"></td>
-                    <td><textarea rows="3" placeholder="اذكر الدروس المنفذة..."></textarea></td>
+                    <td><textarea rows="2" placeholder="اذكر الدروس المنفذة..."></textarea></td>
                 </tr>
             </table>
 

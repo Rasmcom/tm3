@@ -7,11 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @page {
-            size: A4 portrait;
-            margin: 0.3in;
-        }
-        
+        /* Base Styles */
         body {
             font-family: 'Cairo', sans-serif;
             print-color-adjust: exact;
@@ -33,182 +29,12 @@
             box-shadow: none;
             border: none;
         }
-        
-        @media print {
-            @page {
-                size: A4 portrait;
-                margin: 0.4in;
-            }
-            
-            * {
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-            }
-            
-            .form-container {
-                box-shadow: none !important;
-                max-width: 100% !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                width: 100% !important;
-                height: auto !important;
-                transform: scale(0.95) !important;
-                transform-origin: top left !important;
-                overflow: visible !important;
-                page-break-inside: avoid;
-                border: none !important;
-            }
-            
-            .no-print {
-                display: none !important;
-            }
-            
 
-            
-            body {
-                font-size: 9px;
-                line-height: 1.2;
-                margin: 0;
-                padding: 0;
-            }
-            
-            .section-title {
-                font-size: 11px;
-                padding: 6px;
-                margin: 8px 0 6px 0;
-            }
-            
-            table {
-                font-size: 8px;
-                margin-bottom: 8px;
-                page-break-inside: avoid;
-            }
-            
-            th, td {
-                padding: 3px;
-                font-size: 8px;
-            }
-            
-            .header-content {
-                padding: 8px !important;
-                justify-content: flex-start !important;
-            }
-            
-            .ministry-logo {
-                width: 120px;
-                height: 120px;
-            }
-            
-            .info-box {
-                height: 24px;
-                font-size: 10px;
-                padding: 4px 8px;
-            }
-            
-            .school-name-box {
-                min-width: 350px !important;
-                width: 350px !important;
-            }
-            
-            .checkbox-list {
-                font-size: 7px;
-                line-height: 1.1;
-                padding: 6px;
-            }
-            
-            .checkbox-list label {
-                margin-bottom: 2px !important;
-                gap: 4px;
-            }
-            
-            .form-checkbox {
-                width: 14px;
-                height: 14px;
-                margin-left: 3px;
-                -webkit-appearance: none;
-                appearance: none;
-                border: 1px solid #374151;
-                border-radius: 2px;
-                position: relative;
-                background: white;
-                display: inline-block;
-            }
-            
-            .form-checkbox:checked {
-                background-color: #26434B;
-                border-color: #26434B;
-            }
-            
-            .form-checkbox:checked::after {
-                content: "✓";
-                position: absolute;
-                left: 2px;
-                top: -1px;
-                font-size: 10px;
-                font-weight: bold;
-                color: white;
-            }
-            
-            .recommendations-section {
-                margin-top: 4px;
-                padding: 8px;
-            }
-            
-            .recommendations-title {
-                font-size: 9px;
-                padding: 6px;
-                margin: -8px -8px 8px -8px;
-            }
-            
-            .recommendations-grid {
-                gap: 8px;
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .footer-image {
-                height: 60px;
-            }
-            
-            #dailyReport, #weeklyReport {
-                padding: 8px !important;
-            }
-            
-            /* Goals and Achievement Print Layout - Reduced margins */
-            .goals-achievement-section {
-                display: grid !important;
-                grid-template-columns: 1fr 1fr !important;
-                gap: 6px !important;
-                margin-bottom: 8px !important;
-            }
-            
-            .goals-achievement-section .recommendations-section {
-                margin-top: 0 !important;
-                padding: 6px !important;
-            }
-            
-            .goals-achievement-section .recommendations-title {
-                margin: -6px -6px 6px -6px !important;
-                padding: 4px !important;
-            }
-            
-            /* Textarea in goals section */
-            .goals-achievement-section textarea {
-                font-size: 7px !important;
-                line-height: 1.1 !important;
-                padding: 4px !important;
-            }
-        }
-        
+        /* --- START: تعديلات الترويسة --- */
         .ministry-logo {
-            width: 120px;
-            height: 120px;
-            background: white;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            width: 150px; /* تكبير الشعار */
+            height: 150px;
+            flex-shrink: 0;
         }
         
         .ministry-logo img {
@@ -220,23 +46,35 @@
         .info-boxes {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            justify-content: space-between;
+            height: 150px; /* محاذاة ارتفاع المربعات مع الشعار */
+            gap: 0; /* إزالة المسافة بين المربعات */
         }
         
         .info-box {
-            height: 40px;
-            border: 2px solid #e5e7eb;
-            border-radius: 6px;
+            border: none !important; /* إزالة الحدود */
+            border-radius: 0;
+            background: transparent;
+            font-weight: 800;
+            color: white;
+            font-size: 16px;
+            padding: 0 10px;
+            margin: 0;
+            height: 50px; /* تحديد ارتفاع موحد */
             display: flex;
             align-items: center;
-            justify-content: center;
-            background: #f9fafb;
-            font-weight: 600;
-            color: #374151;
-            font-size: 14px;
-            padding: 4px 8px;
         }
-        
+
+        .info-box::placeholder {
+            color: #e5e7eb;
+            opacity: 0.8;
+        }
+
+        .school-name-box {
+            min-width: 450px !important; /* تكبير حقل المدرسة */
+        }
+        /* --- END: تعديلات الترويسة --- */
+
         table {
             border-collapse: collapse;
             width: 100%;
@@ -290,34 +128,40 @@
             line-height: 1.3;
         }
         
+        /* --- START: تعديلات مربعات الاختيار --- */
         .form-checkbox {
-            width: 14px;
-            height: 14px;
-            accent-color: #26434B;
-            flex-shrink: 0;
             -webkit-appearance: none;
             appearance: none;
+            background-color: #fff;
+            margin: 0;
+            font: inherit;
+            color: currentColor;
+            width: 14px;
+            height: 14px;
             border: 1px solid #374151;
             border-radius: 2px;
-            position: relative;
-            background: white;
+            transform: translateY(-0.075em);
+            display: grid;
+            place-content: center;
+            flex-shrink: 0;
             cursor: pointer;
         }
-        
-        .form-checkbox:checked {
-            background-color: #26434B;
-            border-color: #26434B;
+
+        .form-checkbox::before {
+            content: "";
+            width: 0.75em;
+            height: 0.75em;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            box-shadow: inset 1em 1em #26434B;
+            transform-origin: bottom left;
+            clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
         }
-        
-        .form-checkbox:checked::after {
-            content: "✓";
-            position: absolute;
-            left: 2px;
-            top: -1px;
-            font-size: 10px;
-            font-weight: bold;
-            color: white;
+
+        .form-checkbox:checked::before {
+            transform: scale(1);
         }
+        /* --- END: تعديلات مربعات الاختيار --- */
         
         .recommendations-section {
             background: #f8fafc;
@@ -343,359 +187,165 @@
             gap: 15px;
         }
         
-        @media (min-width: 768px) {
-            .info-boxes {
-                flex-direction: row;
-                gap: 12px;
-            }
-            
-            .info-box {
-                height: 32px;
-                min-width: 120px;
-            }
-        }
-        
         .footer-image {
             height: 60px;
             width: auto;
             object-fit: contain;
         }
-        
-        @media print {
-            .footer-image {
-                height: 80px;
-                width: auto;
-                position: relative;
-                bottom: auto;
-                left: auto;
-            }
-            
 
-            
-            .recommendations-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 8px;
+        /* --- START: تعديلات الطباعة الشاملة --- */
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 0.25in; /* تقليل هوامش الصفحة */
             }
             
-            /* Smaller font for recommendations */
-            .recommendations-section .checkbox-list {
-                font-size: 8px !important;
+            * {
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
             }
-            
-            .recommendations-section .checkbox-list label {
-                font-size: 8px !important;
-            }
-            
-            /* Goals and Achievement Print Layout */
-            .goals-achievement-section {
-                display: grid !important;
-                grid-template-columns: 1fr 1fr !important;
-                gap: 8px !important;
-            }
-            
-            .goals-achievement-section .recommendations-section {
-                margin-top: 0 !important;
-            }
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .form-container {
+
+            body {
+                font-size: 9px; /* تصغير الخط الأساسي */
+                line-height: 1.2;
                 margin: 0;
-                box-shadow: none;
-                border-radius: 0;
                 padding: 0;
             }
             
+            .no-print {
+                display: none !important;
+            }
+
+            /* ضمان احتواء كل تقرير في صفحة واحدة */
+            #dailyReport, #weeklyReport {
+                display: block !important; /* إظهار التقرير المحدد للطباعة */
+                page-break-inside: avoid !important; /* منع التقسيم */
+                width: 100% !important;
+                height: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                transform: scale(0.98); /* تصغير طفيف للمحتوى لضمان الاحتواء */
+                transform-origin: top center;
+            }
+
+            .form-container {
+                box-shadow: none !important;
+                border: none !important;
+            }
+
+            /* تعديلات ترويسة الطباعة */
+            .header-content {
+                padding: 8px !important;
+            }
+            .ministry-logo {
+                width: 120px;
+                height: 120px;
+            }
+            .info-boxes {
+                height: 120px;
+            }
+            .info-box {
+                height: 40px;
+                font-size: 11px;
+            }
+            .school-name-box {
+                min-width: 300px !important;
+            }
+            
+            .section-title {
+                font-size: 11px;
+                padding: 5px;
+                margin: 8px 0 6px 0;
+            }
+            
+            table {
+                font-size: 8px;
+                margin-bottom: 6px;
+            }
+            
+            th, td {
+                padding: 2px 3px;
+                font-size: 8px;
+            }
+            
+            .checkbox-list {
+                font-size: 7.5px;
+                line-height: 1.1;
+                padding: 4px;
+            }
+            
+            .checkbox-list label {
+                margin-bottom: 1px !important;
+                gap: 3px;
+            }
+
+            /* تطبيق نفس شكل مربع الاختيار عند الطباعة */
+            .form-checkbox {
+                border: 1px solid #374151 !important;
+                background-color: #fff !important;
+            }
+
+            .form-checkbox::before {
+                box-shadow: inset 1em 1em #26434B !important;
+            }
+            
+            .recommendations-section {
+                margin-top: 4px;
+                padding: 6px;
+            }
+            
+            .recommendations-title {
+                font-size: 9px;
+                padding: 5px;
+                margin: -6px -6px 6px -6px;
+            }
+            
+            .recommendations-grid, .goals-achievement-section {
+                gap: 6px !important;
+                grid-template-columns: 1fr 1fr !important;
+            }
+
+            textarea {
+                font-size: 7px !important;
+                line-height: 1.1 !important;
+                padding: 3px !important;
+            }
+
+            .footer-image {
+                height: 50px;
+            }
+        }
+        /* --- END: تعديلات الطباعة الشاملة --- */
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
                 gap: 15px;
                 text-align: center;
-                padding: 20px !important;
             }
-            
             .ministry-logo {
-                width: 100px;
-                height: 100px;
                 margin: 0 auto;
             }
-            
             .info-boxes {
-                flex-direction: column;
                 width: 100%;
-                gap: 12px;
-            }
-            
-            .info-box {
-                width: 100% !important;
-                min-width: auto !important;
-                height: 40px;
-                font-size: 14px;
-            }
-            
-            .school-name-box {
-                min-width: 100% !important;
-                width: 100% !important;
-            }
-            
-            #dailyReport, #weeklyReport {
-                padding: 15px !important;
-            }
-            
-            .section-title {
-                font-size: 18px;
-                padding: 15px;
-                margin: 15px 0;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .header-content {
-                padding: 15px !important;
-            }
-            
-            .ministry-logo {
-                width: 90px;
-                height: 90px;
-            }
-            
-            .info-box {
-                height: 32px;
-                font-size: 12px;
-                padding: 4px 8px;
-            }
-            
-            table {
-                font-size: 12px;
-                margin-bottom: 15px;
-            }
-            
-            th, td {
-                padding: 6px 4px;
-                font-size: 12px;
-                line-height: 1.2;
-            }
-            
-            .checkbox-list {
-                font-size: 12px;
-                padding: 8px;
-                line-height: 1.3;
-            }
-            
-            .checkbox-list label {
-                margin-bottom: 4px;
-                gap: 6px;
-            }
-            
-            .form-checkbox {
-                width: 14px;
-                height: 14px;
-            }
-            
-            .recommendations-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            
-            .goals-achievement-section {
-                grid-template-columns: 1fr !important;
-                gap: 15px;
-            }
-            
-            .footer-image {
-                height: 50px;
-            }
-            
-            select, input[type="text"], input[type="date"], textarea {
-                font-size: 12px;
-                padding: 6px;
                 height: auto;
-            }
-            
-            .section-title {
-                font-size: 16px;
-                padding: 12px;
-            }
-        }
-        
-        @media (max-width: 640px) {
-            .header-content {
-                padding: 12px !important;
-                gap: 12px;
-            }
-            
-            .ministry-logo {
-                width: 80px;
-                height: 80px;
-            }
-            
-            .info-box {
-                height: 28px;
-                font-size: 12px;
-                padding: 4px 8px;
-            }
-            
-            #dailyReport, #weeklyReport {
-                padding: 12px !important;
-            }
-            
-            table {
-                font-size: 11px;
-                overflow-x: auto;
-                display: block;
-                white-space: nowrap;
-            }
-            
-            table tbody {
-                display: table;
-                width: 100%;
-            }
-            
-            th, td {
-                padding: 5px 3px;
-                font-size: 11px;
-                white-space: normal;
-                word-wrap: break-word;
-            }
-            
-            .checkbox-list {
-                font-size: 11px;
-                padding: 8px;
-            }
-            
-            .checkbox-list label {
-                margin-bottom: 4px;
-                line-height: 1.3;
-            }
-            
-            .form-checkbox {
-                width: 14px;
-                height: 14px;
-            }
-            
-            .section-title {
-                font-size: 14px;
-                padding: 10px;
-                margin: 10px 0;
-            }
-            
-            .footer-image {
-                height: 45px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .header-content {
-                padding: 10px !important;
                 gap: 10px;
             }
-            
-            .ministry-logo {
-                width: 70px;
-                height: 70px;
+            .info-box, .school-name-box {
+                width: 100% !important;
+                min-width: 100% !important;
+                background-color: rgba(255, 255, 255, 0.1) !important;
+                border-radius: 4px !important;
+                border: 1px solid rgba(255, 255, 255, 0.2) !important;
             }
-            
-            .info-box {
-                height: 28px;
-                font-size: 12px;
-                padding: 4px 8px;
+            .recommendations-grid, .goals-achievement-section {
+                grid-template-columns: 1fr;
             }
-            
-            #dailyReport, #weeklyReport {
-                padding: 10px !important;
-            }
-            
             table {
-                font-size: 10px;
-                margin-bottom: 15px;
-            }
-            
-            th, td {
-                padding: 4px 2px;
-                font-size: 10px;
-                line-height: 1.2;
-            }
-            
-            .checkbox-list {
-                font-size: 10px;
-                padding: 6px;
-            }
-            
-            .checkbox-list label {
-                margin-bottom: 3px;
-                line-height: 1.3;
-            }
-            
-            .form-checkbox {
-                width: 12px;
-                height: 12px;
-            }
-            
-            .section-title {
-                font-size: 13px;
-                padding: 8px;
-                margin: 8px 0;
-            }
-            
-            .footer-image {
-                height: 40px;
-            }
-            
-            select, input[type="text"], input[type="date"], textarea {
                 font-size: 12px;
-                padding: 6px;
-                border-radius: 4px;
-            }
-            
-            button {
-                font-size: 14px;
-                padding: 8px 15px;
-                border-radius: 4px;
-            }
-        }
-        
-        @media (max-width: 360px) {
-            .header-content {
-                padding: 8px !important;
-            }
-            
-            .ministry-logo {
-                width: 60px;
-                height: 60px;
-            }
-            
-            .info-box {
-                height: 26px;
-                font-size: 11px;
-                padding: 3px 6px;
-            }
-            
-            table {
-                font-size: 9px;
-            }
-            
-            th, td {
-                padding: 3px 2px;
-                font-size: 9px;
-            }
-            
-            .checkbox-list {
-                font-size: 9px;
-                padding: 4px;
-            }
-            
-            .form-checkbox {
-                width: 11px;
-                height: 11px;
-            }
-            
-            .section-title {
-                font-size: 12px;
-                padding: 6px;
-            }
-            
-            .footer-image {
-                height: 35px;
+                display: block;
+                overflow-x: auto;
             }
         }
     </style>
@@ -703,19 +353,16 @@
 <body class="bg-gray-50">
     <div class="form-container p-0">
         <!-- Header -->
-        <div style="background-color: #26434B;" class="text-white p-4 rounded-t-lg">
-            <div class="header-content flex items-center justify-between">
-                <div class="flex items-center gap-4">
-                    <div class="ministry-logo">
-                        <img src="https://salogos.org/wp-content/uploads/2021/11/UntiTtled-1-1300x988.png" alt="شعار وزارة التعليم">
-                    </div>
-                    <div class="info-boxes">
-                        <input type="text" class="info-box" placeholder="الإدارة التعليمية">
-                        <input type="text" class="info-box" placeholder="المنطقة التعليمية">
-                        <input type="text" class="info-box school-name-box" placeholder="المدرسة" style="min-width: 450px; width: 450px;">
-                    </div>
+        <div style="background-color: #26434B;" class="text-white p-4">
+            <div class="header-content flex items-center justify-between gap-4">
+                <div class="ministry-logo">
+                    <img src="https://j.top4top.io/p_3516qltr40.png" alt="شعار وزارة التعليم">
                 </div>
-
+                <div class="info-boxes flex-grow">
+                    <input type="text" class="info-box" placeholder="الإدارة التعليمية">
+                    <input type="text" class="info-box" placeholder="المنطقة التعليمية">
+                    <input type="text" class="info-box school-name-box" placeholder="المدرسة">
+                </div>
             </div>
         </div>
         <div class="gradient-line"></div>
@@ -746,7 +393,6 @@
         <div id="dailyReport" class="hidden bg-white p-6">
             <div class="section-title">التقرير اليومي</div>
             
-            <!-- Basic Info Table (4 columns) -->
             <table>
                 <tr>
                     <th style="width: 20%;">اليوم</th>
@@ -762,28 +408,26 @@
                 </tr>
             </table>
 
-            <!-- Goals and Achievement Section -->
-            <div class="goals-achievement-section gap-4 mb-4">
+            <div class="goals-achievement-section grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div class="recommendations-section">
                     <div class="recommendations-title">أهداف الدرس</div>
-                    <div class="p-4">
-                        <textarea rows="7" class="w-full border border-gray-300 rounded p-2" placeholder="اكتب أهداف الدرس..."></textarea>
+                    <div class="p-2">
+                        <textarea rows="7" class="w-full" placeholder="اكتب أهداف الدرس..."></textarea>
                     </div>
                 </div>
                 <div class="recommendations-section">
                     <div class="recommendations-title">نسبة التحقق</div>
                     <div class="checkbox-list">
-                        <label><input type="checkbox" class="form-checkbox" value="complete"> تحقق كامل للأهداف</label>
-                        <label><input type="checkbox" class="form-checkbox" value="near-complete"> تحقق شبه كامل</label>
-                        <label><input type="checkbox" class="form-checkbox" value="good"> تحقق جيد</label>
-                        <label><input type="checkbox" class="form-checkbox" value="average"> تحقق متوسط</label>
-                        <label><input type="checkbox" class="form-checkbox" value="weak"> أقل من ٧٠٪ (تحقق ضعيف)</label>
-                        <label><input type="checkbox" class="form-checkbox" value="other"> أخرى</label>
+                        <label><input type="checkbox" class="form-checkbox"> تحقق كامل للأهداف</label>
+                        <label><input type="checkbox" class="form-checkbox"> تحقق شبه كامل</label>
+                        <label><input type="checkbox" class="form-checkbox"> تحقق جيد</label>
+                        <label><input type="checkbox" class="form-checkbox"> تحقق متوسط</label>
+                        <label><input type="checkbox" class="form-checkbox"> أقل من ٧٠٪ (تحقق ضعيف)</label>
+                        <label><input type="checkbox" class="form-checkbox"> أخرى</label>
                     </div>
                 </div>
             </div>
 
-            <!-- Three Column Table -->
             <table style="margin-top: 15px;">
                 <tr>
                     <th style="width: 33.33%;">ملاحظات حول تفاعل الطلاب</th>
@@ -843,7 +487,6 @@
                 </tr>
             </table>
 
-            <!-- Educational Activities Table -->
             <table style="margin-top: 15px;">
                 <tr>
                     <th colspan="3" style="background: #26434B; color: white; text-align: center; padding: 8px;">الأنشطة التعليمية المنفذة</th>
@@ -904,16 +547,12 @@
                     </td>
                 </tr>
             </table>
-
-
-
         </div>
 
         <!-- Weekly Report -->
         <div id="weeklyReport" class="hidden bg-white p-6">
             <div class="section-title">التقرير الأسبوعي</div>
             
-            <!-- Basic Info Table (3 columns) -->
             <table>
                 <tr>
                     <th style="width: 25%;">الأسبوع</th>
@@ -927,7 +566,6 @@
                 </tr>
             </table>
 
-            <!-- Four Column Table for Weekly -->
             <table>
                 <tr>
                     <th style="width: 25%;">إبراز نقاط القوة لدى الطلاب</th>
@@ -1000,13 +638,10 @@
                 </tr>
             </table>
 
-            <!-- Additional Weekly Sections -->
-
-            <!-- Student Assessment and Achievements Table -->
-            <table style="margin-top: 20px;">
+            <table style="margin-top: 15px;">
                 <tr>
-                    <th style="width: 50%; background: #26434B; color: white; text-align: center; padding: 8px;">تقييم الطلاب وإنجازات الأسبوع</th>
-                    <th style="width: 50%; background: #26434B; color: white; text-align: center; padding: 8px;">أفضل الاستراتيجيات والوسائل المنفذة</th>
+                    <th style="width: 50%; background: #26434B; color: white; text-align: center;">تقييم الطلاب وإنجازات الأسبوع</th>
+                    <th style="width: 50%; background: #26434B; color: white; text-align: center;">أفضل الاستراتيجيات والوسائل المنفذة</th>
                 </tr>
                 <tr>
                     <td>
@@ -1015,11 +650,11 @@
                             <label><input type="checkbox" class="form-checkbox"> عالي</label>
                             <label><input type="checkbox" class="form-checkbox"> متوسط</label>
                             <label><input type="checkbox" class="form-checkbox"> ضعيف</label>
-                            <strong>مستوى الفهم:</strong><br>
+                            <strong class="mt-2 inline-block">مستوى الفهم:</strong><br>
                             <label><input type="checkbox" class="form-checkbox"> عالي</label>
                             <label><input type="checkbox" class="form-checkbox"> متوسط</label>
                             <label><input type="checkbox" class="form-checkbox"> ضعيف</label>
-                            <strong>إنجازات الأسبوع:</strong><br>
+                            <strong class="mt-2 inline-block">إنجازات الأسبوع:</strong><br>
                             <label><input type="checkbox" class="form-checkbox"> إكمال وحدة دراسية جديدة</label>
                             <label><input type="checkbox" class="form-checkbox"> تنفيذ مشروع صفي</label>
                             <label><input type="checkbox" class="form-checkbox"> تنفيذ نشاط طلابي</label>
@@ -1035,7 +670,7 @@
                             <label><input type="checkbox" class="form-checkbox"> العصف الذهني</label>
                             <label><input type="checkbox" class="form-checkbox"> التعلم القائم على المشروعات</label>
                             <label><input type="checkbox" class="form-checkbox"> المناقشة الصفية</label>
-                            <strong>الوسائل التعليمية الأكثر تنفيذًا:</strong><br>
+                            <strong class="mt-2 inline-block">الوسائل التعليمية الأكثر تنفيذًا:</strong><br>
                             <label><input type="checkbox" class="form-checkbox"> السبورة الذكية</label>
                             <label><input type="checkbox" class="form-checkbox"> عروض بوربوينت</label>
                             <label><input type="checkbox" class="form-checkbox"> فيديوهات تعليمية</label>
@@ -1047,10 +682,9 @@
                 </tr>
             </table>
 
-            <!-- Recommendations Table -->
             <table style="margin-top: 15px;">
                 <tr>
-                    <th colspan="2" style="background: #26434B; color: white; text-align: center; padding: 8px;">توصيات الأسبوع القادم</th>
+                    <th colspan="2" style="background: #26434B; color: white; text-align: center;">توصيات الأسبوع القادم</th>
                 </tr>
                 <tr>
                     <td style="width: 50%;">
@@ -1075,31 +709,27 @@
                     </td>
                 </tr>
             </table>
-
-
-
         </div>
 
         <!-- Footer -->
         <div class="bg-white p-6 mt-4">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center gap-2">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-2 w-full sm:w-auto">
                     <label id="teacherLabel" class="text-sm font-semibold">اسم المعلم/ـة:</label>
-                    <input type="text" id="teacherName" class="border border-gray-300 rounded px-3 py-1" style="width: 200px;" placeholder="اكتب اسم المعلم/ـة">
+                    <input type="text" id="teacherName" class="border border-gray-300 rounded px-3 py-1 flex-grow" placeholder="اكتب اسم المعلم/ـة">
                 </div>
-                <div class="flex items-center gap-2">
+                <div class="flex items-center gap-2 w-full sm:w-auto">
                     <label id="directorLabel" class="text-sm font-semibold">اسم المدير/ة:</label>
-                    <input type="text" id="directorName" class="border border-gray-300 rounded px-3 py-1" style="width: 200px;" placeholder="اكتب اسم المدير/ة">
+                    <input type="text" id="directorName" class="border border-gray-300 rounded px-3 py-1 flex-grow" placeholder="اكتب اسم المدير/ة">
                 </div>
             </div>
             
-            <!-- Footer Image -->
             <div class="mt-4 flex justify-end">
                 <img src="https://k.top4top.io/p_3516cnnqn0.png" alt="صورة الفوتر" class="footer-image">
             </div>
             
             <div class="mt-6 text-center no-print">
-                <button onclick="window.print()" class="no-print bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">تحويل إلى PDF</button>
+                <button onclick="prepareAndPrint()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">تحويل إلى PDF</button>
             </div>
         </div>
     </div>
@@ -1122,7 +752,12 @@
             }
         }
 
-        // Update labels based on teacher type
+        function prepareAndPrint() {
+            // This function ensures the correct report is visible for printing
+            // The main logic is now handled by CSS @media print rules
+            window.print();
+        }
+
         document.getElementById('teacherType').addEventListener('change', function() {
             const teacherType = this.value;
             const teacherLabel = document.getElementById('teacherLabel');
@@ -1148,5 +783,5 @@
             }
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'970b3d8ed0f43dc6',t:'MTc1NTQ1NTQwMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>

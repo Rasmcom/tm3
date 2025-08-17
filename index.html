@@ -64,10 +64,20 @@
                 display: none !important;
             }
             
-            /* Fix for header info boxes layout on desktop print */
+            /* Fix for header layout on desktop print */
+            .header-content {
+                padding: 8px !important;
+                flex-direction: column !important; /* Stack header items */
+                align-items: center !important; /* Center them horizontally */
+                gap: 8px !important;
+            }
+            .header-right {
+                text-align: center; /* Ensure title is centered */
+                width: 100%;
+            }
             .info-boxes {
                 flex-direction: column !important;
-                align-items: flex-start !important;
+                align-items: center !important; /* Center info boxes under logo */
             }
             
             /* Compact layout adjustments */
@@ -86,10 +96,6 @@
             th, td {
                 padding: 2px;
                 font-size: 7px;
-            }
-            
-            .header-content {
-                padding: 8px !important; /* Reduced padding */
             }
             
             .header-content h1 {
@@ -145,6 +151,14 @@
             
             #dailyReport, #weeklyReport {
                 padding: 8px !important; /* Reduced padding */
+            }
+
+            /* Specific adjustments for weekly report to fit one page */
+            #weeklyReport .checkbox-list {
+                line-height: 1.05; /* Tighter line height for weekly report */
+            }
+            #weeklyReport table {
+                margin-bottom: 4px; /* Even less margin for weekly report tables */
             }
 
             .form-checkbox {
@@ -558,7 +572,7 @@
                         </select>
                     </td>
                     <td><input type="text" placeholder="مثال: الفترة الأولى"></td>
-                    <td><textarea rows="2" placeholder="اذكر الدروس المنفذة..."></textarea></td>
+                    <td><textarea rows="1" placeholder="اذكر الدروس المنفذة..."></textarea></td>
                 </tr>
             </table>
 
@@ -681,6 +695,18 @@
         </div>
     </div>
 
+    <!-- Pledge Modal -->
+    <div id="pledgeModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden no-print">
+        <div class="bg-white rounded-lg shadow-xl p-6 max-w-sm mx-auto text-center">
+            <h2 class="text-xl font-bold mb-4">تعهد</h2>
+            <p class="mb-6 text-gray-700">أقر وأتعهد أمام الله أنني سأستخدم هذا الموقع للأغراض الشخصية فقط، ولن أستخدمه لأي غرض تجاري أو ربحي. كما أتعهد بعدم مشاركة رابط الموقع مع أي شخص آخر.</p>
+            <p class="mb-6 font-semibold">يرجى الضغط على "أوافق" للمتابعة</p>
+            <button id="agreeButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                أوافق
+            </button>
+        </div>
+    </div>
+
     <script>
         function toggleReportType() {
             const reportType = document.getElementById('reportType').value;
@@ -727,6 +753,15 @@
                 teacherName.placeholder = 'اكتب اسم المعلم/ـة';
                 directorName.placeholder = 'اكتب اسم المدير/ة';
             }
+        });
+
+        // --- Modal Logic ---
+        window.onload = function() {
+            document.getElementById('pledgeModal').classList.remove('hidden');
+        };
+
+        document.getElementById('agreeButton').addEventListener('click', function() {
+            document.getElementById('pledgeModal').classList.add('hidden');
         });
     </script>
 </body>

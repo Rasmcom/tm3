@@ -105,6 +105,11 @@
                 padding: 3px 6px;
             }
             
+            .school-name-box {
+                min-width: 350px !important;
+                width: 350px !important;
+            }
+            
             .checkbox-list {
                 font-size: 7px;
                 line-height: 1.1;
@@ -372,6 +377,15 @@
                 gap: 8px;
             }
             
+            /* Smaller font for recommendations */
+            .recommendations-section .checkbox-list {
+                font-size: 8px !important;
+            }
+            
+            .recommendations-section .checkbox-list label {
+                font-size: 8px !important;
+            }
+            
             /* Goals and Achievement Print Layout */
             .goals-achievement-section {
                 display: grid !important;
@@ -534,7 +548,7 @@
                     <div class="info-boxes">
                         <input type="text" class="info-box" placeholder="الإدارة التعليمية">
                         <input type="text" class="info-box" placeholder="المنطقة التعليمية">
-                        <input type="text" class="info-box" placeholder="المدرسة" style="min-width: 300px; width: 300px;">
+                        <input type="text" class="info-box school-name-box" placeholder="المدرسة" style="min-width: 450px; width: 450px;">
                     </div>
                 </div>
                 <div class="header-right">
@@ -608,7 +622,7 @@
             </div>
 
             <!-- Three Column Table -->
-            <table style="margin-top: 20px;">
+            <table style="margin-top: 15px;">
                 <tr>
                     <th style="width: 33.33%;">ملاحظات حول تفاعل الطلاب</th>
                     <th style="width: 33.33%;">التحديات الصفية</th>
@@ -662,6 +676,58 @@
                             <label><input type="checkbox" class="form-checkbox"> تحفيز الطلاب بالمكافآت أو التعزيز الإيجابي</label>
                             <label><input type="checkbox" class="form-checkbox"> تهيئة بيئة صفية أكثر هدوءاً وتركيزاً</label>
                             <label><input type="checkbox" class="form-checkbox"> التواصل مع ولي الأمر لتعزيز المتابعة المنزلية</label>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- Educational Activities Section -->
+            <table style="margin-top: 20px;">
+                <tr>
+                    <th colspan="4" style="background: #26434B; color: white; text-align: center; padding: 8px;">الأنشطة التعليمية المنفذة</th>
+                </tr>
+                <tr>
+                    <th style="width: 25%;">طريقة التدريس أو الاستراتيجية المستخدمة</th>
+                    <th style="width: 25%;">الوسائل التعليمية المستخدمة</th>
+                    <th style="width: 25%;">الواجبات والأنشطة المكملة</th>
+                    <th style="width: 25%;">متابعة واجبات اليوم السابق</th>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-list">
+                            <label><input type="checkbox" class="form-checkbox"> محاضرة</label>
+                            <label><input type="checkbox" class="form-checkbox"> مناقشة</label>
+                            <label><input type="checkbox" class="form-checkbox"> تعلم تعاوني</label>
+                            <label><input type="checkbox" class="form-checkbox"> تجربة عملية</label>
+                            <label><input type="checkbox" class="form-checkbox"> تعليم مدمج</label>
+                            <label><input type="checkbox" class="form-checkbox"> العصف الذهني</label>
+                            <label><input type="checkbox" class="form-checkbox"> التعلم القائم على المشروعات</label>
+                            <label><input type="checkbox" class="form-checkbox"> لعب الأدوار</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="checkbox-list">
+                            <label><input type="checkbox" class="form-checkbox"> سبورة</label>
+                            <label><input type="checkbox" class="form-checkbox"> عرض بوربوينت</label>
+                            <label><input type="checkbox" class="form-checkbox"> فيديو تعليمي</label>
+                            <label><input type="checkbox" class="form-checkbox"> كتاب مدرسي</label>
+                            <label><input type="checkbox" class="form-checkbox"> وسيلة علمية (مجسم – لوحة – بطاقات تعليمية)</label>
+                            <label><input type="checkbox" class="form-checkbox"> منصة تعليمية (مدرستي – كلاس روم)</label>
+                            <label><input type="checkbox" class="form-checkbox"> أنشطة تفاعلية عبر تطبيقات (Kahoot – Quizizz)</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="checkbox-list">
+                            <label><input type="checkbox" class="form-checkbox"> نشاط صفي</label>
+                            <label><input type="checkbox" class="form-checkbox"> واجب منزلي</label>
+                            <label><input type="checkbox" class="form-checkbox"> بحث فردي أو جماعي</label>
+                            <label><input type="checkbox" class="form-checkbox"> عمل جماعي (مشروع صغير – نشاط تطبيقي)</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="checkbox-list">
+                            <label><input type="checkbox" class="form-checkbox"> تم التطبيق</label>
+                            <label><input type="checkbox" class="form-checkbox"> لم يتم التطبيق</label>
                         </div>
                     </td>
                 </tr>
@@ -761,8 +827,53 @@
 
             <!-- Additional Weekly Sections -->
 
-            <!-- Recommendations Table -->
+            <!-- Student Assessment and Achievements Table -->
             <table style="margin-top: 20px;">
+                <tr>
+                    <th style="width: 50%; background: #26434B; color: white; text-align: center; padding: 8px;">تقييم الطلاب وإنجازات الأسبوع</th>
+                    <th style="width: 50%; background: #26434B; color: white; text-align: center; padding: 8px;">أفضل الاستراتيجيات والوسائل المنفذة</th>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-list">
+                            <strong>مستوى التفاعل:</strong><br>
+                            <label><input type="checkbox" class="form-checkbox"> عالي</label>
+                            <label><input type="checkbox" class="form-checkbox"> متوسط</label>
+                            <label><input type="checkbox" class="form-checkbox"> ضعيف</label>
+                            <strong>مستوى الفهم:</strong><br>
+                            <label><input type="checkbox" class="form-checkbox"> عالي</label>
+                            <label><input type="checkbox" class="form-checkbox"> متوسط</label>
+                            <label><input type="checkbox" class="form-checkbox"> ضعيف</label>
+                            <strong>إنجازات الأسبوع:</strong><br>
+                            <label><input type="checkbox" class="form-checkbox"> إكمال وحدة دراسية جديدة</label>
+                            <label><input type="checkbox" class="form-checkbox"> تنفيذ مشروع صفي</label>
+                            <label><input type="checkbox" class="form-checkbox"> تنفيذ نشاط طلابي</label>
+                            <label><input type="checkbox" class="form-checkbox"> تحسن ملحوظ في مستوى بعض الطلاب</label>
+                            <label><input type="checkbox" class="form-checkbox"> تفعيل استراتيجية جديدة</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="checkbox-list">
+                            <strong>أفضل الاستراتيجيات المنفذة:</strong><br>
+                            <label><input type="checkbox" class="form-checkbox"> التعلم التعاوني</label>
+                            <label><input type="checkbox" class="form-checkbox"> التعلم النشط</label>
+                            <label><input type="checkbox" class="form-checkbox"> العصف الذهني</label>
+                            <label><input type="checkbox" class="form-checkbox"> التعلم القائم على المشروعات</label>
+                            <label><input type="checkbox" class="form-checkbox"> المناقشة الصفية</label>
+                            <strong>الوسائل التعليمية الأكثر تنفيذًا:</strong><br>
+                            <label><input type="checkbox" class="form-checkbox"> السبورة الذكية</label>
+                            <label><input type="checkbox" class="form-checkbox"> عروض بوربوينت</label>
+                            <label><input type="checkbox" class="form-checkbox"> فيديوهات تعليمية</label>
+                            <label><input type="checkbox" class="form-checkbox"> الكتاب المدرسي</label>
+                            <label><input type="checkbox" class="form-checkbox"> مجسمات أو بطاقات تعليمية</label>
+                            <label><input type="checkbox" class="form-checkbox"> التطبيقات التفاعلية</label>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- Recommendations Table -->
+            <table style="margin-top: 15px;">
                 <tr>
                     <th colspan="2" style="background: #26434B; color: white; text-align: center; padding: 8px;">توصيات الأسبوع القادم</th>
                 </tr>
@@ -785,6 +896,58 @@
                             <label><input type="checkbox" class="form-checkbox"> إجراء اختبارات قصيرة لقياس مستوى التقدم</label>
                             <label><input type="checkbox" class="form-checkbox"> التعاون مع ولي الأمر لدعم الطلاب خارج المدرسة</label>
                             <label><input type="checkbox" class="form-checkbox"> توفير موارد ووسائل تعليمية إضافية</label>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- Educational Activities Section -->
+            <table style="margin-top: 20px;">
+                <tr>
+                    <th colspan="4" style="background: #26434B; color: white; text-align: center; padding: 8px;">الأنشطة التعليمية المنفذة</th>
+                </tr>
+                <tr>
+                    <th style="width: 25%;">طريقة التدريس أو الاستراتيجية المستخدمة</th>
+                    <th style="width: 25%;">الوسائل التعليمية المستخدمة</th>
+                    <th style="width: 25%;">الواجبات والأنشطة المكملة</th>
+                    <th style="width: 25%;">متابعة واجبات اليوم السابق</th>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-list">
+                            <label><input type="checkbox" class="form-checkbox"> محاضرة</label>
+                            <label><input type="checkbox" class="form-checkbox"> مناقشة</label>
+                            <label><input type="checkbox" class="form-checkbox"> تعلم تعاوني</label>
+                            <label><input type="checkbox" class="form-checkbox"> تجربة عملية</label>
+                            <label><input type="checkbox" class="form-checkbox"> تعليم مدمج</label>
+                            <label><input type="checkbox" class="form-checkbox"> العصف الذهني</label>
+                            <label><input type="checkbox" class="form-checkbox"> التعلم القائم على المشروعات</label>
+                            <label><input type="checkbox" class="form-checkbox"> لعب الأدوار</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="checkbox-list">
+                            <label><input type="checkbox" class="form-checkbox"> سبورة</label>
+                            <label><input type="checkbox" class="form-checkbox"> عرض بوربوينت</label>
+                            <label><input type="checkbox" class="form-checkbox"> فيديو تعليمي</label>
+                            <label><input type="checkbox" class="form-checkbox"> كتاب مدرسي</label>
+                            <label><input type="checkbox" class="form-checkbox"> وسيلة علمية (مجسم – لوحة – بطاقات تعليمية)</label>
+                            <label><input type="checkbox" class="form-checkbox"> منصة تعليمية (مدرستي – كلاس روم)</label>
+                            <label><input type="checkbox" class="form-checkbox"> أنشطة تفاعلية عبر تطبيقات (Kahoot – Quizizz)</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="checkbox-list">
+                            <label><input type="checkbox" class="form-checkbox"> نشاط صفي</label>
+                            <label><input type="checkbox" class="form-checkbox"> واجب منزلي</label>
+                            <label><input type="checkbox" class="form-checkbox"> بحث فردي أو جماعي</label>
+                            <label><input type="checkbox" class="form-checkbox"> عمل جماعي (مشروع صغير – نشاط تطبيقي)</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="checkbox-list">
+                            <label><input type="checkbox" class="form-checkbox"> تم التطبيق</label>
+                            <label><input type="checkbox" class="form-checkbox"> لم يتم التطبيق</label>
                         </div>
                     </td>
                 </tr>
@@ -863,5 +1026,5 @@
             }
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'970aae4c81c4fb0d',t:'MTc1NTQ0OTUzNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'970ae15aa3c6edc8',t:'MTc1NTQ1MTYyNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

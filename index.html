@@ -3,793 +3,730 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ملف شواهد الأداء الوظيفي للمعلم</title>
+    <title>تقرير الإنجاز اليومي والأسبوعي للمعلم</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Cairo', sans-serif;
+        @page {
+            size: A4 portrait;
+            margin: 0.3in;
         }
         
         body {
-            background-color: #f5f5f5;
-            color: #333;
-            padding-right: 70px; /* Space for sidebar */
+            font-family: 'Cairo', sans-serif;
+            print-color-adjust: exact;
+            -webkit-print-color-adjust: exact;
         }
         
-        .container {
-            max-width: 1200px;
+        .gradient-line {
+            background: linear-gradient(90deg, #10b981, #3b82f6);
+            height: 4px;
+        }
+        
+        .form-container {
+            max-width: 210mm;
+            min-height: 297mm;
             margin: 0 auto;
-            padding: 0 15px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
         
-        /* Header Styles */
-        header {
-            background-color: #333;
-            padding: 15px 0;
-            position: relative;
-            width: 100%;
+        @media print {
+            html, body {
+                height: auto !important;
+                overflow: visible !important;
+            }
+            
+            .form-container {
+                box-shadow: none;
+                max-width: none;
+                margin: 0;
+                padding: 0.1in;
+                transform: scale(0.85);
+                transform-origin: top left;
+                width: 118% !important;
+            }
+            
+            .no-print {
+                display: none !important;
+            }
+            
+            body {
+                font-size: 8px !important;
+                line-height: 1.0 !important;
+            }
+            
+            .section-title {
+                font-size: 10px !important;
+                padding: 3px !important;
+                margin: 4px 0 2px 0 !important;
+            }
+            
+            table {
+                font-size: 7px !important;
+                margin-bottom: 6px !important;
+                border-collapse: collapse !important;
+            }
+            
+            th, td {
+                padding: 1px 2px !important;
+                border: 1px solid #000 !important;
+                vertical-align: top !important;
+            }
+            
+            .header-content h1 {
+                font-size: 12px !important;
+            }
+            
+            .ministry-logo {
+                width: 40px !important;
+                height: 40px !important;
+            }
+            
+            .info-box {
+                height: 16px !important;
+                font-size: 7px !important;
+                padding: 1px 2px !important;
+            }
+            
+            .checkbox-list {
+                font-size: 6px !important;
+                line-height: 0.9 !important;
+            }
+            
+            .checkbox-list label {
+                margin-bottom: 0.3px !important;
+                display: flex !important;
+                align-items: center !important;
+            }
+            
+            .form-checkbox {
+                width: 6px !important;
+                height: 6px !important;
+                margin-left: 1px !important;
+                flex-shrink: 0 !important;
+            }
+            
+            .recommendations-section {
+                margin-top: 6px !important;
+                padding: 4px !important;
+            }
+            
+            .recommendations-title {
+                font-size: 8px !important;
+                padding: 3px !important;
+                margin: -4px -4px 4px -4px !important;
+            }
+            
+            .recommendations-grid {
+                grid-template-columns: 1fr 1fr !important;
+                gap: 4px !important;
+            }
+            
+            .footer-image {
+                height: 50px !important;
+                width: auto !important;
+            }
+            
+            input, textarea, select {
+                font-size: 6px !important;
+                padding: 1px !important;
+                border: 1px solid #000 !important;
+            }
+            
+            textarea {
+                min-height: 20px !important;
+            }
         }
         
-        .header-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .header-top {
+        .ministry-logo {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 100%;
-            margin-bottom: 10px;
+            padding: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         
-        .logo-container {
+        .ministry-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .info-boxes {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .info-box {
+            height: 28px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
             display: flex;
             align-items: center;
-            margin: 0 auto;
+            justify-content: center;
+            background: #f9fafb;
+            font-weight: 600;
+            color: #374151;
+            font-size: 12px;
+            padding: 4px 8px;
         }
         
-        .logo {
-            width: 60px;
-            height: auto;
-            margin-left: 15px;
-        }
-        
-        .site-title {
-            color: white;
-            font-size: 20px;
-            font-weight: 700;
-        }
-        
-        .teacher-name {
-            color: #4CAF50;
-            font-size: 20px;
-            font-weight: 700;
-            margin-right: 10px;
-        }
-        
-        .header-info {
-            color: white;
+        table {
+            border-collapse: collapse;
+            width: 100%;
             font-size: 14px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 5px;
-            width: 100%;
-        }
-        
-        .header-info-row {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        
-        .header-info p {
-            margin: 0;
-        }
-        
-        /* Layout */
-        .main-layout {
-            display: flex;
-            min-height: calc(100vh - 200px);
-        }
-        
-        /* Sidebar Navigation */
-        .sidebar {
-            width: 70px;
-            background-color: #333;
-            position: fixed;
-            top: 0;
-            right: 0;
-            height: 100%;
-            z-index: 100;
-            padding-top: 180px;
-        }
-        
-        .nav-list {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .nav-item {
-            position: relative;
-            margin-bottom: 5px;
-        }
-        
-        .nav-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 15px 0;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-link:hover {
-            background-color: rgba(76, 175, 80, 0.2);
-        }
-        
-        .nav-link.active {
-            background-color: #4CAF50;
-        }
-        
-        .nav-icon {
-            font-size: 20px;
-            text-align: center;
-        }
-        
-        .nav-text {
-            position: absolute;
-            right: 70px;
-            top: 0;
-            background-color: #333;
-            padding: 8px 15px 8px 15px;
-            border-radius: 8px 0 0 8px;
-            white-space: nowrap;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            box-shadow: -2px 0 10px rgba(0,0,0,0.2);
-            height: 100%;
-            display: flex;
-            align-items: center;
-            margin: 0;
-            font-weight: bold;
-        }
-        
-        .nav-link:hover .nav-text {
-            opacity: 1;
-            visibility: visible;
-            right: 50px;
-            background: linear-gradient(to right, #2196F3, #4CAF50);
-            color: white;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-        }
-        
-        /* Content Area */
-        .content-area {
-            flex: 1;
-            padding: 20px;
-            width: 100%;
-        }
-        
-        /* Tab Content */
-        .tab-content {
-            display: none;
-            padding: 20px;
-            background-color: white;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-            min-height: 400px;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        /* Loading Spinner */
-        .loading {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 200px;
-        }
-        
-        .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #2196F3;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* Introduction Page */
-        .intro-section {
-            margin-bottom: 40px;
-            position: relative;
-            padding: 25px;
-            border-radius: 8px;
-            background-color: #fff;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-        
-        .intro-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 5px;
-            height: 100%;
-            background: linear-gradient(to bottom, #2196F3, #4CAF50);
-        }
-        
-        .intro-section h2 {
-            color: #2196F3;
-            margin-bottom: 20px;
-            font-size: 24px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .intro-section h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 60px;
-            height: 3px;
-            background-color: #4CAF50;
-        }
-        
-        .intro-section p {
-            line-height: 1.8;
             margin-bottom: 15px;
-            font-size: 16px;
-            text-align: justify;
         }
         
-        /* Leaders Words */
-        .leaders-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: center;
-        }
-        
-        .leader-card {
-            width: 100%;
-            max-width: 350px;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            background-color: #fff;
-            position: relative;
-        }
-        
-        .leader-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-        
-        .leader-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(to right, #2196F3, #4CAF50);
-        }
-        
-        .leader-content {
-            padding: 20px 25px 30px;
+        th, td {
+            border: 1px solid #d1d5db;
+            padding: 8px;
             text-align: center;
+            vertical-align: top;
         }
         
-        .leader-content h3 {
-            margin-bottom: 20px;
-            color: #333;
-            font-size: 18px;
-            line-height: 1.4;
-            position: relative;
-            padding-bottom: 15px;
+        th {
+            background-color: #f3f4f6;
+            font-weight: 600;
         }
         
-        .leader-content h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 2px;
-            background: linear-gradient(to right, #2196F3, #4CAF50);
-        }
-        
-        .leader-content p {
-            line-height: 1.8;
-            text-align: justify;
-            color: #555;
-            font-size: 15px;
-            position: relative;
-            padding: 15px;
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            margin-top: 10px;
-        }
-        
-        .leader-content p::before {
-            content: '\201C';
-            font-size: 60px;
-            position: absolute;
-            top: -15px;
-            right: 10px;
-            color: #e0e0e0;
-            font-family: serif;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: #333;
+        .section-title {
+            background: linear-gradient(90deg, #26434B, #3b82f6);
             color: white;
-            padding: 20px 0;
+            padding: 12px;
+            font-weight: 700;
             text-align: center;
-            margin-top: 30px;
+            margin: 20px 0 10px 0;
+            border-radius: 6px;
         }
         
-        .footer-content {
+        select, input[type="text"], input[type="date"], textarea {
+            width: 100%;
+            padding: 6px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 12px;
+        }
+        
+        .checkbox-list {
+            text-align: right;
+            padding: 8px;
+        }
+        
+        .checkbox-list label {
             display: flex;
             align-items: center;
-            justify-content: center;
+            gap: 6px;
+            margin-bottom: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            line-height: 1.3;
+        }
+        
+        .form-checkbox {
+            width: 14px;
+            height: 14px;
+            accent-color: #26434B;
+            flex-shrink: 0;
+        }
+        
+        .recommendations-section {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 15px;
+        }
+        
+        .recommendations-title {
+            background: #26434B;
+            color: white;
+            padding: 8px;
+            font-weight: 600;
+            text-align: center;
+            margin: -12px -12px 12px -12px;
+            border-radius: 6px 6px 0 0;
+        }
+        
+        .recommendations-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 15px;
         }
         
-        .footer-logo {
-            width: 40px;
-            height: auto;
-            transition: transform 0.3s ease;
+        @media (min-width: 768px) {
+            .info-boxes {
+                flex-direction: row;
+                gap: 12px;
+            }
+            
+            .info-box {
+                height: 32px;
+                min-width: 120px;
+            }
         }
         
-        .footer-logo:hover {
-            transform: scale(1.1);
+        .footer-image {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
         }
         
-        .footer-link {
-            color: #2196F3;
-            text-decoration: none;
+        @media print {
+            .footer-image {
+                height: 80px;
+                width: auto;
+                position: relative;
+                bottom: auto;
+                left: auto;
+            }
+            
+            .form-checkbox {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 8px;
+                height: 8px;
+                border: 1px solid #000;
+                border-radius: 0 !important;
+                margin-left: 2px;
+                position: relative;
+                background: white;
+                display: inline-block;
+            }
+            
+            .form-checkbox:checked::after {
+                content: "✓";
+                position: absolute;
+                left: 0px;
+                top: -2px;
+                font-size: 6px;
+                font-weight: bold;
+                color: #000;
+            }
         }
         
-        /* Error Message */
-        .error-message {
-            background-color: #f8d7da;
-            color: #721c24;
-            padding: 15px;
-            border-radius: 5px;
-            margin: 20px 0;
-            border: 1px solid #f5c6cb;
-        }
-        
-        /* Success Message */
-        .success-message {
-            background-color: #d4edda;
-            color: #155724;
-            padding: 15px;
-            border-radius: 5px;
-            margin: 20px 0;
-            border: 1px solid #c3e6cb;
+        @media (max-width: 640px) {
+            .form-container {
+                margin: 0;
+                box-shadow: none;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+            
+            .header-right {
+                order: -1;
+            }
+            
+            table {
+                font-size: 11px;
+            }
+            
+            th, td {
+                padding: 4px 2px;
+            }
+            
+            .ministry-logo {
+                width: 80px;
+                height: 80px;
+                margin: 0 auto;
+            }
+            
+            .footer-image {
+                height: 40px;
+            }
+            
+            .recommendations-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="header-top">
-                    <div class="logo-container">
-                        <img src="https://via.placeholder.com/60x60/4CAF50/white?text=شعار" alt="شعار المدرسة" class="logo">
-                        <div>
-                            <div class="site-title">ملف شواهد الأداء الوظيفي</div>
-                            <div class="teacher-name" id="teacher-name">جاري التحميل...</div>
-                        </div>
+<body class="bg-gray-50">
+    <div class="form-container p-6" id="reportContent">
+        <!-- Header -->
+        <div style="background-color: #26434B;" class="text-white p-4 rounded-t-lg">
+            <div class="header-content flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <div class="ministry-logo">
+                        <img src="https://salogos.org/wp-content/uploads/2021/11/UntiTtled-1-1300x988.png" alt="شعار وزارة التعليم">
+                    </div>
+                    <div class="info-boxes">
+                        <input type="text" class="info-box" placeholder="الإدارة التعليمية">
+                        <input type="text" class="info-box" placeholder="المنطقة التعليمية">
+                        <input type="text" class="info-box" placeholder="المدرسة">
                     </div>
                 </div>
-                <div class="header-info">
-                    <div class="header-info-row">
-                        <p id="teacher-school">جاري التحميل...</p>
-                        <p id="teacher-level">جاري التحميل...</p>
-                        <p id="teacher-subject">جاري التحميل...</p>
+                <div class="header-right">
+                    <h1 id="reportTitle" class="text-xl font-bold">تقرير الإنجاز</h1>
+                </div>
+            </div>
+        </div>
+        <div class="gradient-line"></div>
+
+        <!-- Selection Options -->
+        <div class="bg-white p-4 border-x border-gray-200">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div>
+                    <label class="block text-sm font-semibold mb-2">نوع المعلم:</label>
+                    <select id="teacherType" class="w-full">
+                        <option value="">اختر...</option>
+                        <option value="معلم">معلم</option>
+                        <option value="معلمة">معلمة</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold mb-2">نوع التقرير:</label>
+                    <select id="reportType" class="w-full" onchange="toggleReportType()">
+                        <option value="">اختر نوع التقرير...</option>
+                        <option value="daily">تقرير يومي</option>
+                        <option value="weekly">تقرير أسبوعي</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Daily Report -->
+        <div id="dailyReport" class="hidden bg-white border-x border-gray-200 p-4">
+            <div class="section-title">التقرير اليومي</div>
+            
+            <!-- Basic Info Table (5 columns) -->
+            <table>
+                <tr>
+                    <th style="width: 15%;">اليوم</th>
+                    <th style="width: 20%;">التاريخ</th>
+                    <th style="width: 20%;">الصف</th>
+                    <th style="width: 25%;">عنوان الدرس</th>
+                    <th style="width: 20%;">أهداف الدرس</th>
+                </tr>
+                <tr>
+                    <td><input type="text" placeholder="مثال: الأحد"></td>
+                    <td><input type="date"></td>
+                    <td><input type="text" placeholder="مثال: الثالث الابتدائي"></td>
+                    <td><input type="text" placeholder="عنوان الدرس"></td>
+                    <td><textarea rows="2" placeholder="اكتب أهداف الدرس..."></textarea></td>
+                </tr>
+            </table>
+
+            <!-- Achievement Percentage Section -->
+            <div class="recommendations-section">
+                <div class="recommendations-title">نسبة التحقق</div>
+                <div class="checkbox-list">
+                    <label><input type="checkbox" class="form-checkbox" value="complete"> تحقق كامل للأهداف</label>
+                    <label><input type="checkbox" class="form-checkbox" value="near-complete"> تحقق شبه كامل</label>
+                    <label><input type="checkbox" class="form-checkbox" value="good"> تحقق جيد</label>
+                    <label><input type="checkbox" class="form-checkbox" value="average"> تحقق متوسط</label>
+                    <label><input type="checkbox" class="form-checkbox" value="weak"> أقل من ٧٠٪ (تحقق ضعيف)</label>
+                    <label><input type="checkbox" class="form-checkbox" value="other"> أخرى</label>
+                </div>
+            </div>
+
+            <!-- Three Column Table -->
+            <table style="margin-top: 20px;">
+                <tr>
+                    <th style="width: 33.33%;">ملاحظات حول تفاعل الطلاب</th>
+                    <th style="width: 33.33%;">التحديات الصفية</th>
+                    <th style="width: 33.33%;">الإجراءات العلاجية المتخذة</th>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-list">
+                            <label><input type="checkbox" class="form-checkbox"> تفاعل ممتاز من جميع الطلاب</label>
+                            <label><input type="checkbox" class="form-checkbox"> تفاعل جيد من أغلب الطلاب</label>
+                            <label><input type="checkbox" class="form-checkbox"> تفاعل متوسط مع حاجة لتحفيز إضافي</label>
+                            <label><input type="checkbox" class="form-checkbox"> قلة مشاركة من بعض الطلاب</label>
+                            <label><input type="checkbox" class="form-checkbox"> التزام كامل بالوقت والتعليمات</label>
+                            <label><input type="checkbox" class="form-checkbox"> حاجة لإعادة شرح بعض المفاهيم</label>
+                            <label><input type="checkbox" class="form-checkbox"> طرح أسئلة تدل على فهم عميق</label>
+                            <label><input type="checkbox" class="form-checkbox"> طرح أسئلة تحتاج توضيح إضافي</label>
+                            <label><input type="checkbox" class="form-checkbox"> تفاعل مميز من طلاب أو أكثر</label>
+                            <label><input type="checkbox" class="form-checkbox"> مشاركة فعالة في الأنشطة الجماعية</label>
+                            <label><input type="checkbox" class="form-checkbox"> ضعف في حل التدريبات الكتابية</label>
+                            <label><input type="checkbox" class="form-checkbox"> حماس واضح أثناء تنفيذ النشاط العملي</label>
+                            <label><input type="checkbox" class="form-checkbox"> عدم التزام بعض الطلاب بإحضار الأدوات/الكتب</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="checkbox-list">
+                            <label><input type="checkbox" class="form-checkbox"> ضعف انضباط بعض الطلاب</label>
+                            <label><input type="checkbox" class="form-checkbox"> تشتت انتباه الطلاب أثناء الشرح</label>
+                            <label><input type="checkbox" class="form-checkbox"> غياب بعض الطلاب</label>
+                            <label><input type="checkbox" class="form-checkbox"> ضعف مشاركة جماعية</label>
+                            <label><input type="checkbox" class="form-checkbox"> صعوبة في فهم المفهوم الرئيس للدرس</label>
+                            <label><input type="checkbox" class="form-checkbox"> مشكلات تقنية أو نقص في الوسائل التعليمية</label>
+                            <label><input type="checkbox" class="form-checkbox"> تأخر بداية الحصة بسبب تجهيزات أو عوامل خارجية</label>
+                            <label><input type="checkbox" class="form-checkbox"> ازدحام الصف مما أثر على الحركة والنشاط</label>
+                            <label><input type="checkbox" class="form-checkbox"> انشغال الطلاب بأمور جانبية</label>
+                            <label><input type="checkbox" class="form-checkbox"> الحاجة لمراعاة الفروق الفردية بشكل أكبر</label>
+                            <label><input type="checkbox" class="form-checkbox"> ضيق الوقت وعدم كفاية الحصة لإكمال الدرس</label>
+                            <label><input type="checkbox" class="form-checkbox"> عدم توفر البيئة الصفية المناسبة (إضاءة/تهوية/هدوء)</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="checkbox-list">
+                            <label><input type="checkbox" class="form-checkbox"> إعادة شرح النقاط الصعبة</label>
+                            <label><input type="checkbox" class="form-checkbox"> استخدام وسائل تعليمية إضافية</label>
+                            <label><input type="checkbox" class="form-checkbox"> تقسيم الطلاب لمجموعات عمل</label>
+                            <label><input type="checkbox" class="form-checkbox"> تقديم أنشطة إثرائية للطلاب المتقدمين</label>
+                            <label><input type="checkbox" class="form-checkbox"> تقديم دعم فردي للطلاب المتأخرين</label>
+                            <label><input type="checkbox" class="form-checkbox"> تكليف بواجب منزلي داعم</label>
+                            <label><input type="checkbox" class="form-checkbox"> تطبيق أسلوب التعلم النشط لزيادة التفاعل</label>
+                            <label><input type="checkbox" class="form-checkbox"> استخدام أسلوب المحاكاة أو التجارب العملية</label>
+                            <label><input type="checkbox" class="form-checkbox"> إعطاء أمثلة إضافية لتوضيح الفكرة</label>
+                            <label><input type="checkbox" class="form-checkbox"> تحفيز الطلاب بالمكافآت أو التعزيز الإيجابي</label>
+                            <label><input type="checkbox" class="form-checkbox"> تهيئة بيئة صفية أكثر هدوءاً وتركيزاً</label>
+                            <label><input type="checkbox" class="form-checkbox"> التواصل مع ولي الأمر لتعزيز المتابعة المنزلية</label>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Weekly Report -->
+        <div id="weeklyReport" class="hidden bg-white border-x border-gray-200 p-4">
+            <div class="section-title">التقرير الأسبوعي</div>
+            
+            <!-- Basic Info Table (3 columns) -->
+            <table>
+                <tr>
+                    <th style="width: 25%;">الأسبوع</th>
+                    <th style="width: 25%;">الفترة</th>
+                    <th style="width: 50%;">الدروس المنفذة</th>
+                </tr>
+                <tr>
+                    <td><input type="text" placeholder="مثال: الأسبوع الأول"></td>
+                    <td><input type="text" placeholder="مثال: الفترة الأولى"></td>
+                    <td><textarea rows="3" placeholder="اذكر الدروس المنفذة..."></textarea></td>
+                </tr>
+            </table>
+
+            <!-- Four Column Table for Weekly -->
+            <table>
+                <tr>
+                    <th style="width: 25%;">إبراز نقاط القوة لدى الطلاب</th>
+                    <th style="width: 25%;">أبرز التحديات التعليمية</th>
+                    <th style="width: 25%;">الإجراءات العلاجية المتخذة</th>
+                    <th style="width: 25%;">أثر الإجراءات على تقدم الطلاب</th>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-list">
+                            <label><input type="checkbox" class="form-checkbox"> مشاركة فعالة في النشاطات الصفية</label>
+                            <label><input type="checkbox" class="form-checkbox"> دقة في حل التمارين والأنشطة</label>
+                            <label><input type="checkbox" class="form-checkbox"> التزام بحل الواجبات وتسليمها في الوقت المحدد</label>
+                            <label><input type="checkbox" class="form-checkbox"> قدرة عالية على العمل الجماعي والتعاون</label>
+                            <label><input type="checkbox" class="form-checkbox"> سرعة في استيعاب المفاهيم الجديدة</label>
+                            <label><input type="checkbox" class="form-checkbox"> إبداع وابتكار في تنفيذ الأنشطة</label>
+                            <label><input type="checkbox" class="form-checkbox"> تحسن ملحوظ في الانضباط والسلوك</label>
+                            <label><input type="checkbox" class="form-checkbox"> قدرة على ربط المعلومات بالواقع اليومي</label>
+                            <label><input type="checkbox" class="form-checkbox"> استخدام المفردات والمصطلحات العلمية بثقة</label>
+                            <label><input type="checkbox" class="form-checkbox"> تقدم ملحوظ مقارنة بالأسبوع السابق</label>
+                            <label><input type="checkbox" class="form-checkbox"> مهارات عالية في العرض والتقديم</label>
+                            <label><input type="checkbox" class="form-checkbox"> مهارة ممتازة في استخدام التقنيات التعليمية</label>
+                            <label><input type="checkbox" class="form-checkbox"> إتقان المهارات العملية والمخبرية</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="checkbox-list">
+                            <label><input type="checkbox" class="form-checkbox"> صعوبة في فهم بعض المفاهيم الأساسية</label>
+                            <label><input type="checkbox" class="form-checkbox"> ضعف في مهارات القراءة أو الكتابة أو العمليات الحسابية</label>
+                            <label><input type="checkbox" class="form-checkbox"> بطء في إنجاز المهام والأنشطة</label>
+                            <label><input type="checkbox" class="form-checkbox"> قلة مشاركة بعض الطلاب</label>
+                            <label><input type="checkbox" class="form-checkbox"> غياب متكرر لبعض الطلاب وعدم إحضار الكتب</label>
+                            <label><input type="checkbox" class="form-checkbox"> تشتت الانتباه أثناء الشرح</label>
+                            <label><input type="checkbox" class="form-checkbox"> ضعف في تنظيم الأفكار عند الإجابة</label>
+                            <label><input type="checkbox" class="form-checkbox"> الحاجة إلى دعم في مهارات التفكير الناقد</label>
+                            <label><input type="checkbox" class="form-checkbox"> مقاومة لبعض طرق التعلم الجديدة</label>
+                            <label><input type="checkbox" class="form-checkbox"> ضعف في الالتزام بالوقت المخصص للأنشطة</label>
+                            <label><input type="checkbox" class="form-checkbox"> تفاوت كبير في مستوى الطلاب داخل الصف</label>
+                            <label><input type="checkbox" class="form-checkbox"> محدودية الموارد أو الوسائل التعليمية</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="checkbox-list">
+                            <label><input type="checkbox" class="form-checkbox"> إعادة شرح المفاهيم الصعبة</label>
+                            <label><input type="checkbox" class="form-checkbox"> تكليف واجب منزلي موجه لتعزيز الفهم</label>
+                            <label><input type="checkbox" class="form-checkbox"> استخدام وسائل تعليمية متنوعة (صور، فيديو، نماذج)</label>
+                            <label><input type="checkbox" class="form-checkbox"> تقسيم الطلاب لمجموعات عمل حسب المستوى</label>
+                            <label><input type="checkbox" class="form-checkbox"> تقديم دعم فردي للطلاب المتأخرين</label>
+                            <label><input type="checkbox" class="form-checkbox"> التواصل مع أولياء الأمور لمتابعة الطلاب</label>
+                            <label><input type="checkbox" class="form-checkbox"> تنظيم مسابقات تحفيزية لزيادة التفاعل</label>
+                            <label><input type="checkbox" class="form-checkbox"> إدماج التعلم باللعب أو المحاكاة</label>
+                            <label><input type="checkbox" class="form-checkbox"> تقديم حصص مراجعة قبل الاختبارات</label>
+                            <label><input type="checkbox" class="form-checkbox"> تدريب الطلاب على استراتيجيات المذاكرة الفعالة</label>
+                            <label><input type="checkbox" class="form-checkbox"> تهيئة بيئة صفية محفزة وهادئة</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="checkbox-list">
+                            <label><input type="checkbox" class="form-checkbox"> تحسين ملحوظ في مستوى الفهم والاستيعاب</label>
+                            <label><input type="checkbox" class="form-checkbox"> زيادة واضحة في المشاركة والتفاعل</label>
+                            <label><input type="checkbox" class="form-checkbox"> تحسن في نتائج الاختبارات القصيرة والشهرية</label>
+                            <label><input type="checkbox" class="form-checkbox"> التزام أكبر بحل الواجبات وتسليمها</label>
+                            <label><input type="checkbox" class="form-checkbox"> تحسن في مهارات التفكير وحل المشكلات</label>
+                            <label><input type="checkbox" class="form-checkbox"> انخفاض ملحوظ في السلوكيات السلبية</label>
+                            <label><input type="checkbox" class="form-checkbox"> تقارب مستويات الطلاب وتقلص الفروق الفردية</label>
+                            <label><input type="checkbox" class="form-checkbox"> ارتفاع الحافز الذاتي للتعلم</label>
+                            <label><input type="checkbox" class="form-checkbox"> استمرار بعض الصعوبات رغم الإجراءات</label>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- Additional Weekly Sections -->
+            <div class="recommendations-section">
+                <div class="recommendations-title">توصيات الأسبوع القادم</div>
+                <div class="recommendations-grid">
+                    <div class="checkbox-list">
+                        <label><input type="checkbox" class="form-checkbox"> مراجعة شاملة للمفاهيم الأساسية</label>
+                        <label><input type="checkbox" class="form-checkbox"> تكثيف الدعم الفردي للطلاب المتأخرين</label>
+                        <label><input type="checkbox" class="form-checkbox"> التركيز على تنمية مهارات التفكير الناقد والإبداعي</label>
+                        <label><input type="checkbox" class="form-checkbox"> زيادة الأنشطة التطبيقية والعملية</label>
+                        <label><input type="checkbox" class="form-checkbox"> تنظيم أنشطة جماعية لتعزيز العمل التعاوني</label>
+                        <label><input type="checkbox" class="form-checkbox"> تطبيق أساليب التعلم النشط بشكل أكبر</label>
                     </div>
-                    <div class="header-info-row">
-                        <p id="teacher-phone">جاري التحميل...</p>
-                        <p id="teacher-email">جاري التحميل...</p>
+                    <div class="checkbox-list">
+                        <label><input type="checkbox" class="form-checkbox"> إعداد أنشطة إثرائية للطلاب المتقدمين</label>
+                        <label><input type="checkbox" class="form-checkbox"> مراجعة الانضباط السلوكي وتشجيع الالتزام</label>
+                        <label><input type="checkbox" class="form-checkbox"> استخدام التقنية في تنفيذ الدروس</label>
+                        <label><input type="checkbox" class="form-checkbox"> إجراء اختبارات قصيرة لقياس مستوى التقدم</label>
+                        <label><input type="checkbox" class="form-checkbox"> التعاون مع ولي الأمر لدعم الطلاب خارج المدرسة</label>
+                        <label><input type="checkbox" class="form-checkbox"> توفير موارد ووسائل تعليمية إضافية</label>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
 
-    <!-- Main Layout -->
-    <div class="main-layout">
-        <!-- Sidebar Navigation -->
-        <nav class="sidebar">
-            <ul class="nav-list">
-                <li class="nav-item">
-                    <a href="#" class="nav-link active" data-tab="intro">
-                        <i class="nav-icon fas fa-home"></i>
-                        <span class="nav-text">المقدمة</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" data-tab="leaders">
-                        <i class="nav-icon fas fa-users"></i>
-                        <span class="nav-text">كلمات القادة</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" data-tab="cv">
-                        <i class="nav-icon fas fa-user"></i>
-                        <span class="nav-text">السيرة الذاتية</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" data-tab="certificates">
-                        <i class="nav-icon fas fa-certificate"></i>
-                        <span class="nav-text">الشهادات</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" data-tab="courses">
-                        <i class="nav-icon fas fa-graduation-cap"></i>
-                        <span class="nav-text">الدورات</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-
-        <!-- Content Area -->
-        <div class="content-area">
-            <!-- Introduction Tab -->
-            <div id="intro" class="tab-content active">
-                <div class="loading" id="intro-loading">
-                    <div class="spinner"></div>
+        <!-- Footer -->
+        <div class="bg-white border border-gray-200 rounded-b-lg p-4 mt-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label id="teacherLabel" class="block text-sm font-semibold mb-2">اسم المعلم/ـة:</label>
+                    <input type="text" id="teacherName" class="w-full" placeholder="اكتب اسم المعلم/ـة">
                 </div>
-                <div id="intro-content" style="display: none;">
-                    <!-- سيتم تحميل المحتوى من قاعدة البيانات -->
+                <div>
+                    <label id="directorLabel" class="block text-sm font-semibold mb-2">اسم المدير/ة:</label>
+                    <input type="text" id="directorName" class="w-full" placeholder="اكتب اسم المدير/ة">
                 </div>
             </div>
-
-            <!-- Leaders Words Tab -->
-            <div id="leaders" class="tab-content">
-                <div class="loading" id="leaders-loading">
-                    <div class="spinner"></div>
-                </div>
-                <div id="leaders-content" style="display: none;">
-                    <div class="leaders-header">
-                        <h2>كلمات القادة</h2>
-                    </div>
-                    <div class="leaders-container" id="leaders-container">
-                        <!-- سيتم تحميل كلمات القادة من قاعدة البيانات -->
-                    </div>
-                </div>
+            
+            <!-- Footer Image -->
+            <div class="mt-4 flex justify-start">
+                <img src="https://k.top4top.io/p_3516cnnqn0.png" alt="صورة الفوتر" class="footer-image">
             </div>
-
-            <!-- CV Tab -->
-            <div id="cv" class="tab-content">
-                <h2>السيرة الذاتية</h2>
-                <p>هذا القسم سيحتوي على السيرة الذاتية التفصيلية.</p>
-            </div>
-
-            <!-- Certificates Tab -->
-            <div id="certificates" class="tab-content">
-                <div class="loading" id="certificates-loading">
-                    <div class="spinner"></div>
-                </div>
-                <div id="certificates-content" style="display: none;">
-                    <h2>الشهادات</h2>
-                    <div id="certificates-container">
-                        <!-- سيتم تحميل الشهادات من قاعدة البيانات -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- Courses Tab -->
-            <div id="courses" class="tab-content">
-                <div class="loading" id="courses-loading">
-                    <div class="spinner"></div>
-                </div>
-                <div id="courses-content" style="display: none;">
-                    <h2>الدورات التدريبية</h2>
-                    <div id="courses-container">
-                        <!-- سيتم تحميل الدورات من قاعدة البيانات -->
-                    </div>
-                </div>
+            
+            <div class="mt-6 text-center no-print">
+                <button onclick="generatePDF()" style="background-color: #26434B;" class="text-white px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity mr-4">
+                    تحويل إلى PDF
+                </button>
+                <button onclick="window.print()" style="background-color: #059669;" class="text-white px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity">
+                    طباعة التقرير
+                </button>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <img src="https://via.placeholder.com/40x40/4CAF50/white?text=شعار" alt="شعار المدرسة" class="footer-logo">
-                <p>&copy; 2024 ملف شواهد الأداء الوظيفي للمعلم. جميع الحقوق محفوظة.</p>
-                <a href="#" class="footer-link">الموقع الرسمي للمدرسة</a>
-            </div>
-        </div>
-    </footer>
-
     <script>
-        // API Base URL
-        const API_BASE = '/api';
+        function toggleReportType() {
+            const reportType = document.getElementById('reportType').value;
+            const dailyReport = document.getElementById('dailyReport');
+            const weeklyReport = document.getElementById('weeklyReport');
+            const reportTitle = document.getElementById('reportTitle');
+            const teacherType = document.getElementById('teacherType').value;
+            
+            // Hide both reports first
+            dailyReport.classList.add('hidden');
+            weeklyReport.classList.add('hidden');
+            
+            // Show selected report
+            if (reportType === 'daily') {
+                dailyReport.classList.remove('hidden');
+                reportTitle.textContent = teacherType === 'معلمة' ? 'تقرير الإنجاز اليومي للمعلمة' : 'تقرير الإنجاز اليومي للمعلم';
+            } else if (reportType === 'weekly') {
+                weeklyReport.classList.remove('hidden');
+                reportTitle.textContent = teacherType === 'معلمة' ? 'تقرير الإنجاز الأسبوعي للمعلمة' : 'تقرير الإنجاز الأسبوعي للمعلم';
+            }
+            
+            // Update labels based on teacher type
+            updateLabels();
+        }
 
-        // عناصر DOM
-        const navLinks = document.querySelectorAll('.nav-link');
-        const tabContents = document.querySelectorAll('.tab-content');
+        function updateLabels() {
+            const teacherType = document.getElementById('teacherType').value;
+            const teacherLabel = document.getElementById('teacherLabel');
+            const directorLabel = document.getElementById('directorLabel');
+            
+            if (teacherType === 'معلمة') {
+                teacherLabel.textContent = 'اسم المعلمة:';
+                directorLabel.textContent = 'اسم المديرة:';
+            } else {
+                teacherLabel.textContent = 'اسم المعلم:';
+                directorLabel.textContent = 'اسم المدير:';
+            }
+        }
 
-        // تبديل التبويبات
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                
-                // إزالة الفئة النشطة من جميع الروابط والتبويبات
-                navLinks.forEach(l => l.classList.remove('active'));
-                tabContents.forEach(tab => tab.classList.remove('active'));
-                
-                // إضافة الفئة النشطة للرابط المحدد
-                link.classList.add('active');
-                
-                // إظهار التبويب المطلوب
-                const tabId = link.getAttribute('data-tab');
-                const targetTab = document.getElementById(tabId);
-                if (targetTab) {
-                    targetTab.classList.add('active');
-                    
-                    // تحميل البيانات حسب التبويب
-                    loadTabData(tabId);
-                }
-            });
+        // Update labels when teacher type changes
+        document.getElementById('teacherType').addEventListener('change', function() {
+            updateLabels();
+            toggleReportType(); // Also update report title
         });
 
-        // تحميل البيانات حسب التبويب
-        function loadTabData(tabId) {
-            switch(tabId) {
-                case 'intro':
-                    loadIntroData();
-                    break;
-                case 'leaders':
-                    loadLeadersData();
-                    break;
-                case 'certificates':
-                    loadCertificatesData();
-                    break;
-                case 'courses':
-                    loadCoursesData();
-                    break;
-            }
-        }
-
-        // تحميل معلومات المعلم الأساسية
-        async function loadTeacherInfo() {
-            try {
-                const response = await fetch(`${API_BASE}/teacher-info`);
-                if (response.ok) {
-                    const teacher = await response.json();
-                    
-                    document.getElementById('teacher-name').textContent = teacher.name || 'غير محدد';
-                    document.getElementById('teacher-school').textContent = teacher.school || 'غير محدد';
-                    document.getElementById('teacher-level').textContent = teacher.education_level || 'غير محدد';
-                    document.getElementById('teacher-subject').textContent = teacher.subject || 'غير محدد';
-                    document.getElementById('teacher-phone').textContent = teacher.phone || 'غير محدد';
-                    document.getElementById('teacher-email').textContent = teacher.email || 'غير محدد';
-                } else {
-                    console.error('فشل في تحميل معلومات المعلم');
+        // Enhanced PDF generation function
+        function generatePDF() {
+            const element = document.getElementById('reportContent');
+            const opt = {
+                margin: [0.3, 0.3, 0.3, 0.3],
+                filename: 'تقرير_الإنجاز.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { 
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true,
+                    scrollX: 0,
+                    scrollY: 0,
+                    width: element.scrollWidth,
+                    height: element.scrollHeight
+                },
+                jsPDF: { 
+                    unit: 'in', 
+                    format: 'a4', 
+                    orientation: 'portrait',
+                    compress: true
                 }
-            } catch (error) {
-                console.error('خطأ في تحميل معلومات المعلم:', error);
-            }
+            };
+
+            html2pdf().set(opt).from(element).save();
         }
 
-        // تحميل بيانات المقدمة
-        async function loadIntroData() {
-            const loading = document.getElementById('intro-loading');
-            const content = document.getElementById('intro-content');
+        // Handle checkbox exclusivity for achievement percentage
+        document.addEventListener('DOMContentLoaded', function() {
+            const achievementCheckboxes = document.querySelectorAll('.recommendations-section .form-checkbox');
             
-            try {
-                loading.style.display = 'flex';
-                content.style.display = 'none';
-                
-                const [introResponse, visionResponse, missionResponse] = await Promise.all([
-                    fetch(`${API_BASE}/sections/intro`),
-                    fetch(`${API_BASE}/sections/vision`),
-                    fetch(`${API_BASE}/sections/mission`)
-                ]);
-                
-                const intro = introResponse.ok ? await introResponse.json() : null;
-                const vision = visionResponse.ok ? await visionResponse.json() : null;
-                const mission = missionResponse.ok ? await missionResponse.json() : null;
-                
-                content.innerHTML = `
-                    <div class="intro-section">
-                        <h2>${intro?.title || 'مقدمة'}</h2>
-                        <p>${intro?.content || 'مرحباً بكم في ملف شواهد الأداء الوظيفي.'}</p>
-                    </div>
-                    
-                    <div class="vision-mission-container">
-                        <div class="vision-box">
-                            <h2><i class="fas fa-eye"></i>${vision?.title || 'الرؤية'}</h2>
-                            <p>${vision?.content || 'رؤية المعلم للمستقبل.'}</p>
-                        </div>
-                        
-                        <div class="mission-box">
-                            <h2><i class="fas fa-bullseye"></i>${mission?.title || 'الرسالة'}</h2>
-                            <p>${mission?.content || 'رسالة المعلم في التعليم.'}</p>
-                        </div>
-                    </div>
-                `;
-                
-                loading.style.display = 'none';
-                content.style.display = 'block';
-                
-            } catch (error) {
-                console.error('خطأ في تحميل بيانات المقدمة:', error);
-                content.innerHTML = '<div class="error-message">حدث خطأ في تحميل البيانات</div>';
-                loading.style.display = 'none';
-                content.style.display = 'block';
-            }
-        }
-
-        // تحميل كلمات القادة
-        async function loadLeadersData() {
-            const loading = document.getElementById('leaders-loading');
-            const content = document.getElementById('leaders-content');
-            const container = document.getElementById('leaders-container');
-            
-            try {
-                loading.style.display = 'flex';
-                content.style.display = 'none';
-                
-                const response = await fetch(`${API_BASE}/leader-words`);
-                if (response.ok) {
-                    const leaders = await response.json();
-                    
-                    container.innerHTML = leaders.map(leader => `
-                        <div class="leader-card">
-                            <div class="leader-content">
-                                <h3>${leader.leader_name}</h3>
-                                <p>${leader.message}</p>
-                            </div>
-                        </div>
-                    `).join('');
-                } else {
-                    container.innerHTML = '<div class="error-message">لم يتم العثور على كلمات القادة</div>';
-                }
-                
-                loading.style.display = 'none';
-                content.style.display = 'block';
-                
-            } catch (error) {
-                console.error('خطأ في تحميل كلمات القادة:', error);
-                container.innerHTML = '<div class="error-message">حدث خطأ في تحميل البيانات</div>';
-                loading.style.display = 'none';
-                content.style.display = 'block';
-            }
-        }
-
-        // تحميل الشهادات
-        async function loadCertificatesData() {
-            const loading = document.getElementById('certificates-loading');
-            const content = document.getElementById('certificates-content');
-            const container = document.getElementById('certificates-container');
-            
-            try {
-                loading.style.display = 'flex';
-                content.style.display = 'none';
-                
-                const response = await fetch(`${API_BASE}/certificates`);
-                if (response.ok) {
-                    const certificates = await response.json();
-                    
-                    if (certificates.length > 0) {
-                        container.innerHTML = certificates.map(cert => `
-                            <div class="certificate-item" style="margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
-                                <h3>${cert.title}</h3>
-                                <p><strong>الجهة المانحة:</strong> ${cert.issuer || 'غير محدد'}</p>
-                                <p><strong>تاريخ الإصدار:</strong> ${cert.date_issued || 'غير محدد'}</p>
-                                ${cert.description ? `<p><strong>الوصف:</strong> ${cert.description}</p>` : ''}
-                                ${cert.certificate_file ? `<p><a href="${cert.certificate_file}" target="_blank">عرض الشهادة</a></p>` : ''}
-                            </div>
-                        `).join('');
-                    } else {
-                        container.innerHTML = '<p>لا توجد شهادات مضافة بعد.</p>';
+            achievementCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        // Uncheck other checkboxes in the same section
+                        const parent = this.closest('.recommendations-section');
+                        const otherCheckboxes = parent.querySelectorAll('.form-checkbox');
+                        otherCheckboxes.forEach(other => {
+                            if (other !== this) {
+                                other.checked = false;
+                            }
+                        });
                     }
-                } else {
-                    container.innerHTML = '<div class="error-message">لم يتم العثور على الشهادات</div>';
-                }
-                
-                loading.style.display = 'none';
-                content.style.display = 'block';
-                
-            } catch (error) {
-                console.error('خطأ في تحميل الشهادات:', error);
-                container.innerHTML = '<div class="error-message">حدث خطأ في تحميل البيانات</div>';
-                loading.style.display = 'none';
-                content.style.display = 'block';
-            }
-        }
-
-        // تحميل الدورات
-        async function loadCoursesData() {
-            const loading = document.getElementById('courses-loading');
-            const content = document.getElementById('courses-content');
-            const container = document.getElementById('courses-container');
-            
-            try {
-                loading.style.display = 'flex';
-                content.style.display = 'none';
-                
-                const response = await fetch(`${API_BASE}/courses`);
-                if (response.ok) {
-                    const courses = await response.json();
-                    
-                    if (courses.length > 0) {
-                        container.innerHTML = courses.map(course => `
-                            <div class="course-item" style="margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
-                                <h3>${course.title}</h3>
-                                <p><strong>مقدم الدورة:</strong> ${course.provider || 'غير محدد'}</p>
-                                <p><strong>تاريخ الإكمال:</strong> ${course.date_completed || 'غير محدد'}</p>
-                                ${course.duration_hours ? `<p><strong>عدد الساعات:</strong> ${course.duration_hours} ساعة</p>` : ''}
-                                ${course.description ? `<p><strong>الوصف:</strong> ${course.description}</p>` : ''}
-                                ${course.certificate_file ? `<p><a href="${course.certificate_file}" target="_blank">عرض الشهادة</a></p>` : ''}
-                            </div>
-                        `).join('');
-                    } else {
-                        container.innerHTML = '<p>لا توجد دورات مضافة بعد.</p>';
-                    }
-                } else {
-                    container.innerHTML = '<div class="error-message">لم يتم العثور على الدورات</div>';
-                }
-                
-                loading.style.display = 'none';
-                content.style.display = 'block';
-                
-            } catch (error) {
-                console.error('خطأ في تحميل الدورات:', error);
-                container.innerHTML = '<div class="error-message">حدث خطأ في تحميل البيانات</div>';
-                loading.style.display = 'none';
-                content.style.display = 'block';
-            }
-        }
-
-        // تهيئة البيانات عند تحميل الصفحة
-        document.addEventListener('DOMContentLoaded', async () => {
-            // تحميل معلومات المعلم
-            await loadTeacherInfo();
-            
-            // تحميل بيانات التبويب الأول (المقدمة)
-            loadIntroData();
-            
-            // إضافة البيانات التجريبية إذا لم تكن موجودة
-            try {
-                await fetch(`${API_BASE}/init-sample-data`, { method: 'POST' });
-            } catch (error) {
-                console.log('البيانات التجريبية موجودة بالفعل أو حدث خطأ:', error);
-            }
+                });
+            });
         });
     </script>
 </body>

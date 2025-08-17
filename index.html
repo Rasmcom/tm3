@@ -209,6 +209,15 @@
             #weeklyReport.hidden {
                 display: none !important;
             }
+            
+            /* --- START: Auto-scaling for reports --- */
+            #dailyReport:not(.hidden) {
+                transform: scale(0.97) !important;
+            }
+            #weeklyReport:not(.hidden) {
+                transform: scale(0.96) !important;
+            }
+            /* --- END: Auto-scaling for reports --- */
 
             #dailyReport:not(.hidden),
             #weeklyReport:not(.hidden) {
@@ -218,7 +227,6 @@
                 height: 100% !important;
                 padding: 0 !important;
                 margin: 0 !important;
-                transform: scale(0.98); /* Scale down to fit */
                 transform-origin: top center;
             }
 
@@ -307,11 +315,20 @@
                 padding: 3px !important;
             }
 
-            /* --- START: Layout Adjustments for Print --- */
+            /* --- START: Specific Layout Adjustments for Print --- */
             .goals-achievement-section {
                 display: grid !important;
                 grid-template-columns: 1fr 1fr !important;
                 gap: 6px !important;
+            }
+            /* Daily Report: Objectives textarea font size */
+            #dailyObjectives {
+                font-size: 7.5px !important;
+            }
+            /* Weekly Report: Implemented lessons textarea style */
+            #weeklyLessonsImplemented {
+                font-weight: bold !important;
+                font-size: 8px !important;
             }
             .activities-table-print {
                 width: 100% !important;
@@ -322,8 +339,7 @@
                 justify-content: space-between !important;
                 align-items: center !important;
             }
-            /* --- END: Layout Adjustments for Print --- */
-
+            /* --- END: Specific Layout Adjustments for Print --- */
 
             .footer-image {
                 height: 50px;
@@ -344,12 +360,10 @@
             .info-boxes {
                 width: 100%;
                 height: auto;
-                gap: 10px;
             }
             .info-box, .school-name-box {
                 width: 100% !important;
                 min-width: 100% !important;
-                background-color: rgba(255, 255, 255, 0.1) !important;
                 border-radius: 4px !important;
             }
             table {
@@ -405,10 +419,10 @@
             
             <table>
                 <tr>
-                    <th style="width: 20%;">اليوم</th>
-                    <th style="width: 25%;">التاريخ</th>
-                    <th style="width: 25%;">الصف</th>
-                    <th style="width: 30%;">عنوان الدرس</th>
+                    <th style="width: 15%;">اليوم</th>
+                    <th style="width: 20%;">التاريخ</th>
+                    <th style="width: 20%;">الصف</th>
+                    <th style="width: 45%;">عنوان الدرس</th>
                 </tr>
                 <tr>
                     <td><input type="text" placeholder="مثال: الأحد"></td>
@@ -422,7 +436,7 @@
                 <div class="recommendations-section">
                     <div class="recommendations-title">أهداف الدرس</div>
                     <div class="p-2">
-                        <textarea rows="7" class="w-full" placeholder="اكتب أهداف الدرس..."></textarea>
+                        <textarea id="dailyObjectives" rows="7" class="w-full" placeholder="اكتب أهداف الدرس..."></textarea>
                     </div>
                 </div>
                 <div class="recommendations-section">
@@ -572,7 +586,7 @@
                 <tr>
                     <td><input type="text" placeholder="مثال: الأسبوع الأول"></td>
                     <td><input type="text" placeholder="مثال: الفترة الأولى"></td>
-                    <td><textarea rows="3" placeholder="اذكر الدروس المنفذة..."></textarea></td>
+                    <td><textarea id="weeklyLessonsImplemented" rows="3" placeholder="اذكر الدروس المنفذة..."></textarea></td>
                 </tr>
             </table>
 

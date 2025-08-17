@@ -189,7 +189,7 @@
         @media print {
             @page {
                 size: A4 portrait;
-                margin: 0.25in;
+                margin: 0.2in;
             }
             
             * {
@@ -204,15 +204,12 @@
                 padding: 0;
             }
             
-            /* --- START: Print Visibility Control --- */
-            /* Hide non-essential elements and the non-selected report */
             .no-print,
             #dailyReport.hidden,
             #weeklyReport.hidden {
                 display: none !important;
             }
 
-            /* Style the selected, visible report for printing */
             #dailyReport:not(.hidden),
             #weeklyReport:not(.hidden) {
                 display: block !important;
@@ -221,20 +218,18 @@
                 height: 100% !important;
                 padding: 0 !important;
                 margin: 0 !important;
-                transform: scale(0.97); /* Scale down to fit */
+                transform: scale(0.98); /* Scale down to fit */
                 transform-origin: top center;
             }
-            /* --- END: Print Visibility Control --- */
 
             .form-container {
                 box-shadow: none !important;
                 border: none !important;
             }
 
-            /* --- START: Print Header Styles --- */
             .header-content {
                 display: flex !important;
-                flex-direction: row !important; /* Ensure side-by-side layout */
+                flex-direction: row !important;
                 align-items: center !important;
                 justify-content: flex-start !important;
                 gap: 1rem !important;
@@ -246,19 +241,18 @@
             }
             .info-boxes {
                 height: 120px;
-                gap: 0 !important; /* Ensure no gap */
+                gap: 0 !important;
             }
             .info-box {
                 height: 40px;
-                font-size: 11px;
-                background: transparent !important; /* Ensure no background */
-                border: none !important; /* Ensure no border */
+                font-size: 10px !important; /* Smaller font size */
+                background: transparent !important;
+                border: none !important;
                 color: white !important;
             }
             .school-name-box {
                 min-width: 300px !important;
             }
-            /* --- END: Print Header Styles --- */
             
             .section-title {
                 font-size: 11px;
@@ -312,6 +306,24 @@
                 line-height: 1.1 !important;
                 padding: 3px !important;
             }
+
+            /* --- START: Layout Adjustments for Print --- */
+            .goals-achievement-section {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 6px !important;
+            }
+            .activities-table-print {
+                width: 100% !important;
+            }
+            .footer-names-container {
+                display: flex !important;
+                flex-direction: row !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+            }
+            /* --- END: Layout Adjustments for Print --- */
+
 
             .footer-image {
                 height: 50px;
@@ -485,7 +497,7 @@
                 </tr>
             </table>
 
-            <table style="margin-top: 15px;">
+            <table style="margin-top: 15px;" class="activities-table-print">
                 <tr>
                     <th colspan="3" style="background: #26434B; color: white; text-align: center; padding: 8px;">الأنشطة التعليمية المنفذة</th>
                 </tr>
@@ -638,8 +650,13 @@
 
             <table style="margin-top: 15px;">
                 <tr>
-                    <th style="width: 50%; background: #26434B; color: white; text-align: center;">تقييم الطلاب وإنجازات الأسبوع</th>
-                    <th style="width: 50%; background: #26434B; color: white; text-align: center;">أفضل الاستراتيجيات والوسائل المنفذة</th>
+                    <th colspan="4" style="background: #26434B; color: white; text-align: center;">تقييم الطلاب والإنجازات وأفضل الاستراتيجيات</th>
+                </tr>
+                <tr>
+                    <th style="width: 25%;">مستوى الأداء</th>
+                    <th style="width: 25%;">إنجازات الأسبوع</th>
+                    <th style="width: 25%;">أفضل الاستراتيجيات</th>
+                    <th style="width: 25%;">أفضل الوسائل</th>
                 </tr>
                 <tr>
                     <td>
@@ -652,7 +669,10 @@
                             <label><input type="checkbox" class="form-checkbox"> عالي</label>
                             <label><input type="checkbox" class="form-checkbox"> متوسط</label>
                             <label><input type="checkbox" class="form-checkbox"> ضعيف</label>
-                            <strong class="mt-2 inline-block">إنجازات الأسبوع:</strong><br>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="checkbox-list">
                             <label><input type="checkbox" class="form-checkbox"> إكمال وحدة دراسية جديدة</label>
                             <label><input type="checkbox" class="form-checkbox"> تنفيذ مشروع صفي</label>
                             <label><input type="checkbox" class="form-checkbox"> تنفيذ نشاط طلابي</label>
@@ -662,13 +682,15 @@
                     </td>
                     <td>
                         <div class="checkbox-list">
-                            <strong>أفضل الاستراتيجيات المنفذة:</strong><br>
                             <label><input type="checkbox" class="form-checkbox"> التعلم التعاوني</label>
                             <label><input type="checkbox" class="form-checkbox"> التعلم النشط</label>
                             <label><input type="checkbox" class="form-checkbox"> العصف الذهني</label>
                             <label><input type="checkbox" class="form-checkbox"> التعلم القائم على المشروعات</label>
                             <label><input type="checkbox" class="form-checkbox"> المناقشة الصفية</label>
-                            <strong class="mt-2 inline-block">الوسائل التعليمية الأكثر تنفيذًا:</strong><br>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="checkbox-list">
                             <label><input type="checkbox" class="form-checkbox"> السبورة الذكية</label>
                             <label><input type="checkbox" class="form-checkbox"> عروض بوربوينت</label>
                             <label><input type="checkbox" class="form-checkbox"> فيديوهات تعليمية</label>
@@ -711,7 +733,7 @@
 
         <!-- Footer -->
         <div class="bg-white p-6 mt-4">
-            <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="footer-names-container flex flex-col sm:flex-row justify-between items-center gap-4">
                 <div class="flex items-center gap-2 w-full sm:w-auto">
                     <label id="teacherLabel" class="text-sm font-semibold">اسم المعلم/ـة:</label>
                     <input type="text" id="teacherName" class="border border-gray-300 rounded px-3 py-1 flex-grow" placeholder="اكتب اسم المعلم/ـة">

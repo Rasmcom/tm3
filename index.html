@@ -6,7 +6,6 @@
     <title>تقرير الإنجاز اليومي والأسبوعي للمعلم</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         @page {
             size: A4 portrait;
@@ -25,130 +24,135 @@
         }
         
         .form-container {
-            max-width: 210mm;
-            min-height: 297mm;
-            margin: 0 auto;
+            width: 100vw;
+            max-width: 100vw;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
             background: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: none;
+            border: none;
         }
         
         @media print {
-            html, body {
-                height: auto !important;
-                overflow: visible !important;
+            * {
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
             }
             
             .form-container {
-                box-shadow: none;
-                max-width: none;
-                margin: 0;
-                padding: 0.1in;
-                transform: scale(0.85);
-                transform-origin: top left;
-                width: 118% !important;
+                box-shadow: none !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 100% !important;
+                height: auto !important;
+                transform-origin: top left !important;
+                overflow: visible !important;
+                page-break-inside: avoid;
+                border: none !important;
+            }
+            
+            /* Daily Report Scale */
+            body:has(#dailyReport:not(.hidden)) .form-container {
+                transform: scale(1.0);
+            }
+            
+            /* Weekly Report Scale */
+            body:has(#weeklyReport:not(.hidden)) .form-container {
+                transform: scale(1.0);
+            }
+            
+            /* Default scale for when no report is selected */
+            body:has(#dailyReport.hidden):has(#weeklyReport.hidden) .form-container {
+                transform: scale(1.0);
             }
             
             .no-print {
                 display: none !important;
             }
             
-            .no-print-on-pdf {
-                display: none !important;
-            }
-            
             body {
-                font-size: 8px !important;
-                line-height: 1.0 !important;
+                font-size: 8px;
+                line-height: 1.1;
+                margin: 0;
+                padding: 0;
             }
             
             .section-title {
-                font-size: 10px !important;
-                padding: 3px !important;
-                margin: 4px 0 2px 0 !important;
+                font-size: 10px;
+                padding: 4px;
+                margin: 5px 0 3px 0;
             }
             
             table {
-                font-size: 7px !important;
-                margin-bottom: 6px !important;
-                border-collapse: collapse !important;
+                font-size: 7px;
+                margin-bottom: 6px;
+                page-break-inside: avoid;
             }
             
             th, td {
-                padding: 1px 2px !important;
-                border: 1px solid #000 !important;
-                vertical-align: top !important;
+                padding: 2px;
+                font-size: 7px;
+            }
+            
+            .header-content {
+                padding: 12px !important;
             }
             
             .header-content h1 {
-                font-size: 12px !important;
+                font-size: 12px;
             }
             
             .ministry-logo {
-                width: 40px !important;
-                height: 40px !important;
+                width: 45px;
+                height: 45px;
             }
             
             .info-box {
-                height: 16px !important;
-                font-size: 7px !important;
-                padding: 1px 2px !important;
-                width: 120px !important; /* Increased width for print */
+                height: 16px;
+                font-size: 7px;
+                padding: 2px 4px;
             }
             
             .checkbox-list {
-                font-size: 6px !important;
-                line-height: 0.9 !important;
+                font-size: 6px;
+                line-height: 1.0;
+                padding: 4px;
             }
             
             .checkbox-list label {
-                margin-bottom: 0.3px !important;
-                display: flex !important;
-                align-items: center !important;
+                margin-bottom: 1px !important;
+                gap: 3px;
             }
             
             .form-checkbox {
-                width: 6px !important;
-                height: 6px !important;
-                margin-left: 1px !important;
-                flex-shrink: 0 !important;
+                width: 8px;
+                height: 8px;
+                margin-left: 2px;
             }
             
             .recommendations-section {
-                margin-top: 6px !important;
-                padding: 4px !important;
+                margin-top: 6px;
+                padding: 6px;
             }
             
             .recommendations-title {
-                font-size: 8px !important;
-                padding: 3px !important;
-                margin: -4px -4px 4px -4px !important;
+                font-size: 8px;
+                padding: 4px;
+                margin: -6px -6px 6px -6px;
             }
             
             .recommendations-grid {
-                grid-template-columns: 1fr 1fr !important;
-                gap: 4px !important;
+                gap: 6px;
             }
             
             .footer-image {
-                height: 50px !important;
-                width: auto !important;
+                height: 50px;
             }
             
-            input, textarea, select {
-                font-size: 6px !important;
-                padding: 1px !important;
-                border: 1px solid #000 !important;
-            }
-            
-            textarea {
-                min-height: 20px !important;
-            }
-            
-            .teacher-director-names {
-                border: none !important;
-                background: transparent !important;
-                font-size: 8px !important;
-                font-weight: bold !important;
+            #dailyReport, #weeklyReport {
+                padding: 12px !important;
             }
         }
         
@@ -177,7 +181,7 @@
         }
         
         .info-box {
-            height: 32px;
+            height: 28px;
             border: 2px solid #e5e7eb;
             border-radius: 6px;
             display: flex;
@@ -187,8 +191,7 @@
             font-weight: 600;
             color: #374151;
             font-size: 12px;
-            padding: 4px 12px;
-            min-width: 180px; /* Increased width */
+            padding: 4px 8px;
         }
         
         table {
@@ -275,24 +278,6 @@
             gap: 15px;
         }
         
-        .teacher-director-names {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-            padding: 10px 0;
-        }
-        
-        .teacher-name, .director-name {
-            border: none;
-            background: transparent;
-            font-size: 14px;
-            font-weight: bold;
-            text-align: center;
-            padding: 5px;
-            min-width: 200px;
-        }
-        
         @media (min-width: 768px) {
             .info-boxes {
                 flex-direction: row;
@@ -301,7 +286,7 @@
             
             .info-box {
                 height: 32px;
-                min-width: 180px; /* Increased width */
+                min-width: 120px;
             }
         }
         
@@ -323,11 +308,11 @@
             .form-checkbox {
                 -webkit-appearance: none;
                 appearance: none;
-                width: 8px;
-                height: 8px;
+                width: 10px;
+                height: 10px;
                 border: 1px solid #000;
                 border-radius: 0 !important;
-                margin-left: 2px;
+                margin-left: 3px;
                 position: relative;
                 background: white;
                 display: inline-block;
@@ -338,9 +323,14 @@
                 position: absolute;
                 left: 0px;
                 top: -2px;
-                font-size: 6px;
+                font-size: 8px;
                 font-weight: bold;
                 color: #000;
+            }
+            
+            .recommendations-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
             }
         }
         
@@ -385,7 +375,7 @@
     </style>
 </head>
 <body class="bg-gray-50">
-    <div class="form-container p-6" id="reportContent">
+    <div class="form-container p-0">
         <!-- Header -->
         <div style="background-color: #26434B;" class="text-white p-4 rounded-t-lg">
             <div class="header-content flex items-center justify-between">
@@ -407,7 +397,7 @@
         <div class="gradient-line"></div>
 
         <!-- Selection Options -->
-        <div class="bg-white p-4 border-x border-gray-200 no-print-on-pdf">
+        <div class="bg-white p-6 no-print">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
                     <label class="block text-sm font-semibold mb-2">نوع المعلم:</label>
@@ -426,10 +416,11 @@
                     </select>
                 </div>
             </div>
+            <button onclick="window.print()" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded no-print">تحويل إلى PDF</button>
         </div>
 
         <!-- Daily Report -->
-        <div id="dailyReport" class="hidden bg-white border-x border-gray-200 p-4">
+        <div id="dailyReport" class="hidden bg-white p-6">
             <div class="section-title">التقرير اليومي</div>
             
             <!-- Basic Info Table (5 columns) -->
@@ -492,201 +483,154 @@
                         <div class="checkbox-list">
                             <label><input type="checkbox" class="form-checkbox"> ضعف انضباط بعض الطلاب</label>
                             <label><input type="checkbox" class="form-checkbox"> تشتت انتباه الطلاب أثناء الشرح</label>
-                            <label><input type="checkbox" class="form-checkbox"> غياب بعض الطلاب</label>
-                            <label><input type="checkbox" class="form-checkbox"> ضعف مشاركة جماعية</label>
-                            <label><input type="checkbox" class="form-checkbox"> صعوبة في فهم المفهوم الرئيسي</label>
-                            <label><input type="checkbox" class="form-checkbox"> مشكلات تقنية أو نقص في الوسائل</label>
-                            <label><input type="checkbox" class="form-checkbox"> تأخر بداية الحصة بسبب تجهيز الوسائل</label>
-                            <label><input type="checkbox" class="form-checkbox"> ازدحام الصف مما أثر على الحركة</label>
-                            <label><input type="checkbox" class="form-checkbox"> انشغال الطلاب بأمور جانبية</label>
-                            <label><input type="checkbox" class="form-checkbox"> الحاجة لمراعاة الفروق الفردية</label>
-                            <label><input type="checkbox" class="form-checkbox"> ضيق الوقت وعدم كفاية الحصة للأنشطة</label>
-                            <label><input type="checkbox" class="form-checkbox"> عدم توفر البيئة الصفية المناسبة</label>
+                            <label><input type="checkbox" class="form-checkbox"> صعوبة في إدارة الوقت خلال الحصة</label>
+                            <label><input type="checkbox" class="form-checkbox"> نقص في الأدوات التعليمية المتاحة</label>
+                            <label><input type="checkbox" class="form-checkbox"> عدم كفاية الوقت لتغطية جميع الأهداف</label>
+                            <label><input type="checkbox" class="form-checkbox"> تحديات في التقييم الفوري للطلاب</label>
+                            <label><input type="checkbox" class="form-checkbox"> فروقات فردية كبيرة بين الطلاب</label>
+                            <label><input type="checkbox" class="form-checkbox"> بيئة صفية غير محفزة بشكل كاف</label>
+                            <label><input type="checkbox" class="form-checkbox"> صعوبة في جذب انتباه الطلاب للمادة</label>
+                            <label><input type="checkbox" class="form-checkbox"> كثرة الأسئلة الجانبية التي تشتت التركيز</label>
+                            <label><input type="checkbox" class="form-checkbox"> عدم توفر مصادر تعلم إضافية كافية</label>
+                            <label><input type="checkbox" class="form-checkbox"> صعوبة في تطبيق الأنشطة العملية</label>
+                            <label><input type="checkbox" class="form-checkbox"> عدم استجابة بعض الطلاب للتعليمات</label>
                         </div>
                     </td>
                     <td>
                         <div class="checkbox-list">
-                            <label><input type="checkbox" class="form-checkbox"> إعادة شرح النقاط الصعبة</label>
-                            <label><input type="checkbox" class="form-checkbox"> استخدام وسائل تعليمية إضافية</label>
-                            <label><input type="checkbox" class="form-checkbox"> تقسيم الطلاب لمجموعات عمل</label>
-                            <label><input type="checkbox" class="form-checkbox"> تقديم أنشطة إثرائية للطلاب المتميزين</label>
-                            <label><input type="checkbox" class="form-checkbox"> تقديم دعم فردي للطلاب المتأخرين</label>
-                            <label><input type="checkbox" class="form-checkbox"> تكليف بواجب منزلي داعم</label>
-                            <label><input type="checkbox" class="form-checkbox"> تطبيق أسلوب التعلم النشط لزيادة التفاعل</label>
-                            <label><input type="checkbox" class="form-checkbox"> استخدام أسلوب المحاكاة أو اللعب التعليمي</label>
-                            <label><input type="checkbox" class="form-checkbox"> إعطاء أمثلة إضافية لتوضيح المفاهيم</label>
-                            <label><input type="checkbox" class="form-checkbox"> تحفيز الطلاب بالمكافآت أو التقدير</label>
-                            <label><input type="checkbox" class="form-checkbox"> تهيئة بيئة صفية أكثر هدوءاً وتنظيماً</label>
-                            <label><input type="checkbox" class="form-checkbox"> التواصل مع ولي الأمر لتعزيز المتابعة</label>
+                            <label><input type="checkbox" class="form-checkbox"> استخدام استراتيجيات تدريس متنوعة</label>
+                            <label><input type="checkbox" class="form-checkbox"> تقديم تغذية راجعة فورية للطلاب</label>
+                            <label><input type="checkbox" class="form-checkbox"> تصميم أنشطة جماعية لتعزيز التفاعل</label>
+                            <label><input type="checkbox" class="form-checkbox"> توفير دعم فردي للطلاب المتعثرين</label>
+                            <label><input type="checkbox" class="form-checkbox"> إعادة صياغة الشرح بطرق مختلفة</label>
+                            <label><input type="checkbox" class="form-checkbox"> استخدام وسائل إيضاح إضافية</label>
+                            <label><input type="checkbox" class="form-checkbox"> تحفيز الطلاب من خلال المكافآت والتشجيع</label>
+                            <label><input type="checkbox" class="form-checkbox"> التواصل مع أولياء الأمور لمتابعة الطلاب</label>
+                            <label><input type="checkbox" class="form-checkbox"> تخصيص وقت إضافي للمراجعة والتدريب</label>
+                            <label><input type="checkbox" class="form-checkbox"> تطبيق نظام إدارة صف فعال</label>
+                            <label><input type="checkbox" class="form-checkbox"> توجيه الطلاب لاستخدام مصادر تعلم إضافية</label>
+                            <label><input type="checkbox" class="form-checkbox"> إعادة تقييم الأهداف التعليمية لضمان تحقيقها</label>
+                            <label><input type="checkbox" class="form-checkbox"> تعديل الأنشطة لتناسب مستويات الطلاب المختلفة</label>
                         </div>
                     </td>
                 </tr>
             </table>
+
+            <!-- Teacher's Signature -->
+            <div class="mt-8 text-center">
+                <p class="font-semibold">توقيع المعلم:</p>
+                <div class="border-b-2 border-gray-400 w-1/2 mx-auto mt-4"></div>
+            </div>
         </div>
 
         <!-- Weekly Report -->
-        <div id="weeklyReport" class="hidden bg-white border-x border-gray-200 p-4">
+        <div id="weeklyReport" class="hidden bg-white p-6">
             <div class="section-title">التقرير الأسبوعي</div>
             
-            <!-- Basic Info Table (4 columns) -->
+            <!-- Basic Info Table (5 columns) -->
             <table>
                 <tr>
-                    <th style="width: 25%;">الأسبوع</th>
-                    <th style="width: 25%;">من تاريخ</th>
-                    <th style="width: 25%;">إلى تاريخ</th>
-                    <th style="width: 25%;">الصف</th>
+                    <th style="width: 15%;">الأسبوع</th>
+                    <th style="width: 20%;">الفترة من</th>
+                    <th style="width: 20%;">الفترة إلى</th>
+                    <th style="width: 25%;">المادة</th>
+                    <th style="width: 20%;">عدد الحصص</th>
                 </tr>
                 <tr>
-                    <td><input type="text" placeholder="مثال: الأسبوع الأول"></td>
+                    <td><input type="text" placeholder="مثال: الأول"></td>
                     <td><input type="date"></td>
                     <td><input type="date"></td>
-                    <td><input type="text" placeholder="مثال: الثالث الابتدائي"></td>
+                    <td><input type="text" placeholder="مثال: اللغة العربية"></td>
+                    <td><input type="text" placeholder="مثال: 5"></td>
                 </tr>
             </table>
 
-            <!-- Four Column Table -->
+            <!-- Weekly Achievement Percentage Section -->
+            <div class="recommendations-section">
+                <div class="recommendations-title">نسبة التحقق الأسبوعي</div>
+                <div class="checkbox-list">
+                    <label><input type="checkbox" class="form-checkbox" value="complete"> تحقق كامل للأهداف الأسبوعية</label>
+                    <label><input type="checkbox" class="form-checkbox" value="near-complete"> تحقق شبه كامل للأهداف الأسبوعية</label>
+                    <label><input type="checkbox" class="form-checkbox" value="good"> تحقق جيد للأهداف الأسبوعية</label>
+                    <label><input type="checkbox" class="form-checkbox" value="average"> تحقق متوسط للأهداف الأسبوعية</label>
+                    <label><input type="checkbox" class="form-checkbox" value="weak"> أقل من ٧٠٪ (تحقق ضعيف للأهداف الأسبوعية)</label>
+                    <label><input type="checkbox" class="form-checkbox" value="other"> أخرى</label>
+                </div>
+            </div>
+
+            <!-- Weekly Observations Table -->
             <table style="margin-top: 20px;">
                 <tr>
-                    <th style="width: 25%;">ملاحظات حول تفاعل الطلاب</th>
-                    <th style="width: 25%;">التحديات الصفية</th>
-                    <th style="width: 25%;">الإجراءات العلاجية المتخذة</th>
-                    <th style="width: 25%;">نتائج الإجراءات المتخذة</th>
+                    <th style="width: 33.33%;">ملاحظات عامة حول الأسبوع</th>
+                    <th style="width: 33.33%;">التحديات الأسبوعية</th>
+                    <th style="width: 33.33%;">الإجراءات المقترحة للتحسين</th>
                 </tr>
                 <tr>
                     <td>
                         <div class="checkbox-list">
-                            <label><input type="checkbox" class="form-checkbox"> مشاركة فعالة في النشاطات الصفية</label>
-                            <label><input type="checkbox" class="form-checkbox"> دقة في حل التمارين والأنشطة</label>
-                            <label><input type="checkbox" class="form-checkbox"> التزام بحل الواجبات وتسليمها في الوقت المحدد</label>
-                            <label><input type="checkbox" class="form-checkbox"> قدرة عالية على العمل الجماعي والتعاون</label>
-                            <label><input type="checkbox" class="form-checkbox"> سرعة في استيعاب المفاهيم الجديدة</label>
-                            <label><input type="checkbox" class="form-checkbox"> إبداع وابتكار في تنفيذ الأنشطة</label>
-                            <label><input type="checkbox" class="form-checkbox"> تحسن ملحوظ في الانضباط والسلوك</label>
-                            <label><input type="checkbox" class="form-checkbox"> قدرة على ربط المعلومات بالواقع اليومي</label>
-                            <label><input type="checkbox" class="form-checkbox"> استخدام المفردات والمصطلحات العلمية بثقة</label>
-                            <label><input type="checkbox" class="form-checkbox"> تقدم ملحوظ مقارنة بالأسبوع السابق</label>
-                            <label><input type="checkbox" class="form-checkbox"> مهارات عالية في العرض والتقديم</label>
-                            <label><input type="checkbox" class="form-checkbox"> مهارة ممتازة في استخدام التقنيات التعليمية</label>
-                            <label><input type="checkbox" class="form-checkbox"> إتقان المهارات العملية والمخبرية</label>
+                            <label><input type="checkbox" class="form-checkbox"> تقدم ملحوظ في مستوى الطلاب</label>
+                            <label><input type="checkbox" class="form-checkbox"> مشاركة فعالة من معظم الطلاب</label>
+                            <label><input type="checkbox" class="form-checkbox"> تحقيق الأهداف التعليمية بنجاح</label>
+                            <label><input type="checkbox" class="form-checkbox"> بيئة صفية إيجابية ومحفزة</label>
+                            <label><input type="checkbox" class="form-checkbox"> تفاعل جيد مع الأنشطة الجماعية</label>
+                            <label><input type="checkbox" class="form-checkbox"> استيعاب سريع للمفاهيم الجديدة</label>
+                            <label><input type="checkbox" class="form-checkbox"> التزام الطلاب بالواجبات والمواعيد</label>
+                            <label><input type="checkbox" class="form-checkbox"> استخدام فعال للمصادر التعليمية</label>
+                            <label><input type="checkbox" class="form-checkbox"> تحسن في مهارات التفكير النقدي</label>
+                            <label><input type="checkbox" class="form-checkbox"> قدرة الطلاب على حل المشكلات</label>
+                            <label><input type="checkbox" class="form-checkbox"> تنوع في أساليب التدريس المستخدمة</label>
+                            <label><input type="checkbox" class="form-checkbox"> دعم جيد من إدارة المدرسة</label>
+                            <label><input type="checkbox" class="form-checkbox"> تعاون فعال بين الطلاب</label>
                         </div>
                     </td>
                     <td>
                         <div class="checkbox-list">
-                            <label><input type="checkbox" class="form-checkbox"> صعوبة في فهم بعض المفاهيم الأساسية</label>
-                            <label><input type="checkbox" class="form-checkbox"> ضعف في مهارات القراءة أو الكتابة أو العمليات الحسابية</label>
-                            <label><input type="checkbox" class="form-checkbox"> بطء في إنجاز المهام والأنشطة</label>
-                            <label><input type="checkbox" class="form-checkbox"> قلة مشاركة بعض الطلاب</label>
-                            <label><input type="checkbox" class="form-checkbox"> غياب متكرر لبعض الطلاب وعدم إحضار الكتب</label>
-                            <label><input type="checkbox" class="form-checkbox"> تشتت الانتباه أثناء الشرح</label>
-                            <label><input type="checkbox" class="form-checkbox"> ضعف في تنظيم الأفكار عند الإجابة</label>
-                            <label><input type="checkbox" class="form-checkbox"> الحاجة إلى دعم في مهارات التفكير الناقد</label>
-                            <label><input type="checkbox" class="form-checkbox"> مقاومة لبعض طرق التعلم الجديدة</label>
-                            <label><input type="checkbox" class="form-checkbox"> ضعف في الالتزام بالوقت المخصص للأنشطة</label>
-                            <label><input type="checkbox" class="form-checkbox"> تفاوت كبير في مستوى الطلاب داخل الصف</label>
-                            <label><input type="checkbox" class="form-checkbox"> محدودية الموارد أو الوسائل التعليمية</label>
+                            <label><input type="checkbox" class="form-checkbox"> صعوبة في إدارة السلوك لبعض الطلاب</label>
+                            <label><input type="checkbox" class="form-checkbox"> تفاوت كبير في مستويات الطلاب</label>
+                            <label><input type="checkbox" class="form-checkbox"> نقص في الموارد التعليمية المتاحة</label>
+                            <label><input type="checkbox" class="form-checkbox"> ضيق الوقت لتغطية المنهج كاملاً</label>
+                            <label><input type="checkbox" class="form-checkbox"> صعوبة في تقييم الأداء العملي</label>
+                            <label><input type="checkbox" class="form-checkbox"> عدم انتظام حضور بعض الطلاب</label>
+                            <label><input type="checkbox" class="form-checkbox"> تحديات في التواصل مع أولياء الأمور</label>
+                            <label><input type="checkbox" class="form-checkbox"> الحاجة إلى تدريب إضافي على تقنيات جديدة</label>
+                            <label><input type="checkbox" class="form-checkbox"> ضعف في مهارات القراءة/الكتابة لبعض الطلاب</label>
+                            <label><input type="checkbox" class="form-checkbox"> عدم كفاية الأنشطة اللامنهجية</label>
+                            <label><input type="checkbox" class="form-checkbox"> صعوبة في تحفيز الطلاب غير المهتمين</label>
+                            <label><input type="checkbox" class="form-checkbox"> كثرة الأعباء الإدارية</label>
+                            <label><input type="checkbox" class="form-checkbox"> عدم توفر دعم فني كاف للأجهزة</label>
                         </div>
                     </td>
                     <td>
                         <div class="checkbox-list">
-                            <label><input type="checkbox" class="form-checkbox"> إعادة شرح المفاهيم الصعبة</label>
-                            <label><input type="checkbox" class="form-checkbox"> تكليف واجب منزلي موجه لتعزيز الفهم</label>
-                            <label><input type="checkbox" class="form-checkbox"> استخدام وسائل تعليمية متنوعة (صور، فيديو، نماذج)</label>
-                            <label><input type="checkbox" class="form-checkbox"> تقسيم الطلاب لمجموعات عمل حسب المستوى</label>
-                            <label><input type="checkbox" class="form-checkbox"> تقديم دعم فردي للطلاب المتأخرين</label>
-                            <label><input type="checkbox" class="form-checkbox"> التواصل مع أولياء الأمور لمتابعة الطلاب</label>
-                            <label><input type="checkbox" class="form-checkbox"> تنظيم مسابقات تحفيزية لزيادة التفاعل</label>
-                            <label><input type="checkbox" class="form-checkbox"> إدماج التعلم باللعب أو المحاكاة</label>
-                            <label><input type="checkbox" class="form-checkbox"> تقديم حصص مراجعة قبل الاختبارات</label>
-                            <label><input type="checkbox" class="form-checkbox"> تدريب الطلاب على استراتيجيات المذاكرة الفعالة</label>
-                            <label><input type="checkbox" class="form-checkbox"> تهيئة بيئة صفية محفزة وهادئة</label>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-list">
-                            <label><input type="checkbox" class="form-checkbox"> تحسين ملحوظ في مستوى الفهم والاستيعاب</label>
-                            <label><input type="checkbox" class="form-checkbox"> زيادة واضحة في المشاركة والتفاعل</label>
-                            <label><input type="checkbox" class="form-checkbox"> تحسن في نتائج الاختبارات القصيرة والشهرية</label>
-                            <label><input type="checkbox" class="form-checkbox"> التزام أكبر بحل الواجبات وتسليمها</label>
-                            <label><input type="checkbox" class="form-checkbox"> تحسن في مهارات التفكير وحل المشكلات</label>
-                            <label><input type="checkbox" class="form-checkbox"> انخفاض ملحوظ في السلوكيات السلبية</label>
-                            <label><input type="checkbox" class="form-checkbox"> تقارب مستويات الطلاب وتقلص الفروق الفردية</label>
-                            <label><input type="checkbox" class="form-checkbox"> ارتفاع الحافز الذاتي للتعلم</label>
-                            <label><input type="checkbox" class="form-checkbox"> استمرار بعض الصعوبات رغم الإجراءات</label>
+                            <label><input type="checkbox" class="form-checkbox"> تطوير خطط فردية للطلاب المتعثرين</label>
+                            <label><input type="checkbox" class="form-checkbox"> استخدام استراتيجيات تفاعلية لجذب الانتباه</label>
+                            <label><input type="checkbox" class="form-checkbox"> توفير مصادر تعليمية إضافية ومتنوعة</label>
+                            <label><input type="checkbox" class="form-checkbox"> تنظيم ورش عمل للمعلمين لتبادل الخبرات</label>
+                            <label><input type="checkbox" class="form-checkbox"> تعزيز التواصل مع أولياء الأمور بشكل دوري</label>
+                            <label><input type="checkbox" class="form-checkbox"> تطبيق برامج إرشاد وتوجيه للطلاب</label>
+                            <label><input type="checkbox" class="form-checkbox"> تخصيص حصص إضافية للمراجعة والدعم</label>
+                            <label><input type="checkbox" class="form-checkbox"> دمج التكنولوجيا في العملية التعليمية</label>
+                            <label><input type="checkbox" class="form-checkbox"> تشجيع الطلاب على المشاركة في الأنشطة اللامنهجية</label>
+                            <label><input type="checkbox" class="form-checkbox"> توفير بيئة تعليمية محفزة وجذابة</label>
+                            <label><input type="checkbox" class="form-checkbox"> تقليل الأعباء الإدارية لزيادة التركيز على التدريس</label>
+                            <label><input type="checkbox" class="form-checkbox"> توفير تدريب مستمر على أحدث أساليب التدريس</label>
+                            <label><input type="checkbox" class="form-checkbox"> تعزيز التعاون بين المعلمين في نفس التخصص</label>
                         </div>
                     </td>
                 </tr>
             </table>
 
-            <!-- Weekly Recommendations Section - Multiple Selection Allowed -->
-            <div class="recommendations-section">
-                <div class="recommendations-title">توصيات الأسبوع</div>
-                <div class="recommendations-grid">
-                    <div>
-                        <h4 class="font-semibold mb-3 text-center">التوصيات التعليمية</h4>
-                        <div class="checkbox-list">
-                            <label><input type="checkbox" class="form-checkbox"> تكثيف التدريب على المهارات الأساسية</label>
-                            <label><input type="checkbox" class="form-checkbox"> استخدام استراتيجيات تعليمية متنوعة</label>
-                            <label><input type="checkbox" class="form-checkbox"> تقسيم الطلاب حسب مستوياتهم</label>
-                            <label><input type="checkbox" class="form-checkbox"> زيادة الأنشطة التطبيقية</label>
-                            <label><input type="checkbox" class="form-checkbox"> تطوير مهارات التفكير الناقد</label>
-                            <label><input type="checkbox" class="form-checkbox"> استخدام التقنيات التعليمية الحديثة</label>
-                            <label><input type="checkbox" class="form-checkbox"> تقديم أنشطة إثرائية للمتميزين</label>
-                            <label><input type="checkbox" class="form-checkbox"> تعزيز التعلم التعاوني</label>
-                            <label><input type="checkbox" class="form-checkbox"> ربط التعلم بالواقع العملي</label>
-                            <label><input type="checkbox" class="form-checkbox"> تنويع أساليب التقويم</label>
-                            <label><input type="checkbox" class="form-checkbox"> تطوير مهارات البحث والاستقصاء</label>
-                            <label><input type="checkbox" class="form-checkbox"> تعزيز مهارات التواصل والعرض</label>
-                        </div>
-                    </div>
-                    <div>
-                        <h4 class="font-semibold mb-3 text-center">التوصيات الإدارية</h4>
-                        <div class="checkbox-list">
-                            <label><input type="checkbox" class="form-checkbox"> توفير وسائل تعليمية إضافية</label>
-                            <label><input type="checkbox" class="form-checkbox"> تقليل عدد الطلاب في الصف</label>
-                            <label><input type="checkbox" class="form-checkbox"> تحسين البيئة الصفية</label>
-                            <label><input type="checkbox" class="form-checkbox"> توفير دورات تدريبية للمعلمين</label>
-                            <label><input type="checkbox" class="form-checkbox"> زيادة الحصص للمواد الأساسية</label>
-                            <label><input type="checkbox" class="form-checkbox"> تفعيل دور المرشد الطلابي</label>
-                            <label><input type="checkbox" class="form-checkbox"> تعزيز التواصل مع أولياء الأمور</label>
-                            <label><input type="checkbox" class="form-checkbox"> توفير برامج دعم للطلاب المتأخرين</label>
-                            <label><input type="checkbox" class="form-checkbox"> تطوير المكتبة المدرسية</label>
-                            <label><input type="checkbox" class="form-checkbox"> تحسين نظام المتابعة والتقويم</label>
-                            <label><input type="checkbox" class="form-checkbox"> توفير أنشطة لا صفية متنوعة</label>
-                            <label><input type="checkbox" class="form-checkbox"> تطوير نظام الحوافز والمكافآت</label>
-                        </div>
-                    </div>
-                </div>
+            <!-- Teacher's Signature -->
+            <div class="mt-8 text-center">
+                <p class="font-semibold">توقيع المعلم:</p>
+                <div class="border-b-2 border-gray-400 w-1/2 mx-auto mt-4"></div>
             </div>
         </div>
 
-        <!-- Teacher and Director Names -->
-        <div class="teacher-director-names bg-white border-x border-gray-200 p-4">
-            <div class="flex justify-between items-center">
-                <div class="text-right">
-                    <span id="teacherLabel">اسم المعلم/ة: </span>
-                    <input type="text" class="teacher-name" placeholder="اكتب اسم المعلم/ة">
-                </div>
-                <div class="text-left">
-                    <span id="directorLabel">اسم المدير/ة: </span>
-                    <input type="text" class="director-name" placeholder="اكتب اسم المدير/ة">
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer with Buttons -->
-        <div class="bg-white p-4 rounded-b-lg border-x border-b border-gray-200">
-            <div class="flex justify-center gap-4 mb-4">
-                <button onclick="generatePDF()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold">
-                    تحويل إلى PDF
-                </button>
-                <button onclick="window.print()" class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-semibold">
-                    طباعة التقرير
-                </button>
-            </div>
-            
-            <div class="flex justify-center">
-                <img src="https://i.imgur.com/YourFooterImage.png" alt="Footer Image" class="footer-image">
-            </div>
+        <!-- Footer -->
+        <div class="gradient-line"></div>
+        <div style="background-color: #26434B;" class="text-white p-4 rounded-b-lg flex justify-center items-center">
+            <img src="https://salogos.org/wp-content/uploads/2021/11/UntiTtled-1-1300x988.png" alt="شعار وزارة التعليم" class="footer-image">
         </div>
     </div>
 
@@ -696,7 +640,7 @@
             const dailyReport = document.getElementById('dailyReport');
             const weeklyReport = document.getElementById('weeklyReport');
             const reportTitle = document.getElementById('reportTitle');
-            
+
             if (reportType === 'daily') {
                 dailyReport.classList.remove('hidden');
                 weeklyReport.classList.add('hidden');
@@ -712,32 +656,8 @@
             }
         }
 
-        // Update labels based on teacher type
-        document.getElementById('teacherType').addEventListener('change', function() {
-            const teacherType = this.value;
-            const teacherLabel = document.getElementById('teacherLabel');
-            const directorLabel = document.getElementById('directorLabel');
-            
-            if (teacherType === 'معلم') {
-                teacherLabel.textContent = 'اسم المعلم: ';
-                directorLabel.textContent = 'اسم المدير: ';
-            } else if (teacherType === 'معلمة') {
-                teacherLabel.textContent = 'اسم المعلمة: ';
-                directorLabel.textContent = 'اسم المديرة: ';
-            }
-        });
-
-        function generatePDF() {
-            const element = document.getElementById('reportContent');
-            const opt = {
-                margin: [0.3, 0.3, 0.3, 0.3],
-                filename: 'تقرير_الإنجاز.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, useCORS: true },
-                jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
-            };
-            html2pdf().set(opt).from(element).save();
-        }
+        // Initial call to set the correct state on page load
+        document.addEventListener('DOMContentLoaded', toggleReportType);
     </script>
 </body>
 </html>

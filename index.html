@@ -134,10 +134,6 @@
                 margin: -5px -5px 5px -5px;
             }
             
-            .recommendations-grid {
-                gap: 4px;
-            }
-            
             .footer-image {
                 height: 40px;
             }
@@ -190,9 +186,20 @@
                 transform: rotate(45deg);
             }
             
+            /* Robust 2-column layout for recommendations */
             .recommendations-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 6px;
+                display: block !important; /* Override grid */
+            }
+            .recommendations-grid::after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+            .recommendations-grid .checkbox-list {
+                width: 50%;
+                float: right;
+                box-sizing: border-box;
+                padding-left: 5px;
             }
             
             .goals-achievement-section {

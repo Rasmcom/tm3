@@ -7,9 +7,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* General page setup for printing */
         @page {
             size: A4 portrait;
-            margin: 0.3in;
+            margin: 0.5cm; /* Reduced margin slightly for more space */
         }
         
         body {
@@ -26,63 +27,49 @@
         .form-container {
             width: 100%;
             max-width: 100%;
-            min-height: 100%;
             margin: 0;
             padding: 0;
             background: white;
             box-shadow: none;
             border: none;
         }
-        
+
+        /* --- Print Specific Styles --- */
         @media print {
             * {
                 -webkit-print-color-adjust: exact !important;
                 color-adjust: exact !important;
             }
+
+            html, body {
+                width: 210mm; /* A4 width */
+                height: 297mm; /* A4 height */
+                margin: 0;
+                padding: 0;
+                font-size: 8px; /* Base font size for print */
+                line-height: 1.2;
+            }
             
             .form-container {
-                box-shadow: none !important;
-                max-width: 100% !important;
-                margin: 0 !important;
-                padding: 0 !important;
                 width: 100% !important;
                 height: auto !important;
-                transform-origin: top left !important;
+                margin: 0 auto !important;
+                padding: 0 !important;
+                box-shadow: none !important;
+                border: none !important;
                 overflow: visible !important;
                 page-break-inside: avoid;
-                border: none !important;
-            }
-            
-            /* Daily Report Scale */
-            body:has(#dailyReport:not(.hidden)) .form-container {
-                transform: scale(0.85);
-            }
-            
-            /* Weekly Report Scale */
-            body:has(#weeklyReport:not(.hidden)) .form-container {
-                transform: scale(0.75);
-            }
-            
-            /* Default scale for when no report is selected */
-            body:has(#dailyReport.hidden):has(#weeklyReport.hidden) .form-container {
-                transform: scale(1.0);
             }
             
             .no-print {
                 display: none !important;
             }
             
-            body {
-                font-size: 8px;
-                line-height: 1.1;
-                margin: 0;
-                padding: 0;
-            }
-            
+            /* Compact layout adjustments */
             .section-title {
                 font-size: 10px;
                 padding: 4px;
-                margin: 5px 0 3px 0;
+                margin: 8px 0 5px 0;
             }
             
             table {
@@ -97,7 +84,7 @@
             }
             
             .header-content {
-                padding: 12px !important;
+                padding: 10px !important;
             }
             
             .header-content h1 {
@@ -116,8 +103,8 @@
             }
             
             .checkbox-list {
-                font-size: 6px;
-                line-height: 1.0;
+                font-size: 7px; /* Slightly larger for readability */
+                line-height: 1.1;
                 padding: 4px;
             }
             
@@ -148,11 +135,11 @@
             }
             
             .footer-image {
-                height: 50px;
+                height: 45px; /* Reduced footer image size */
             }
             
             #dailyReport, #weeklyReport {
-                padding: 12px !important;
+                padding: 10px !important;
             }
 
             .form-checkbox {
@@ -183,7 +170,6 @@
                 gap: 8px;
             }
             
-            /* Goals and Achievement Print Layout */
             .goals-achievement-section {
                 display: grid !important;
                 grid-template-columns: 1fr 1fr !important;
@@ -195,6 +181,7 @@
             }
         }
         
+        /* --- Screen Styles (Unchanged) --- */
         .ministry-logo {
             width: 100px;
             height: 100px;
@@ -333,55 +320,6 @@
             height: 60px;
             width: auto;
             object-fit: contain;
-        }
-        
-        @media print {
-            .footer-image {
-                height: 80px;
-                width: auto;
-                position: relative;
-                bottom: auto;
-                left: auto;
-            }
-            
-            .form-checkbox {
-                -webkit-appearance: none;
-                appearance: none;
-                width: 10px;
-                height: 10px;
-                border: 1px solid #000;
-                border-radius: 0 !important;
-                margin-left: 3px;
-                position: relative;
-                background: white;
-                display: inline-block;
-            }
-            
-            .form-checkbox:checked::after {
-                content: "✓";
-                position: absolute;
-                left: 0px;
-                top: -2px;
-                font-size: 8px;
-                font-weight: bold;
-                color: #000;
-            }
-            
-            .recommendations-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 8px;
-            }
-            
-            /* Goals and Achievement Print Layout */
-            .goals-achievement-section {
-                display: grid !important;
-                grid-template-columns: 1fr 1fr !important;
-                gap: 8px !important;
-            }
-            
-            .goals-achievement-section .recommendations-section {
-                margin-top: 0 !important;
-            }
         }
         
         @media (max-width: 640px) {
@@ -693,7 +631,6 @@
             </table>
 
             <!-- Additional Weekly Sections -->
-
             <div class="recommendations-section">
                 <div class="recommendations-title">توصيات الأسبوع القادم</div>
                 <div class="recommendations-grid">
@@ -787,5 +724,5 @@
             }
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9706fa92e0c7ee89',t:'MTc1NTQxMDcxNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>

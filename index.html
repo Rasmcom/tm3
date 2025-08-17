@@ -119,8 +119,6 @@
             }
             
             .checkbox-list label {
-                display: flex !important;
-                align-items: center !important;
                 margin-bottom: 2px !important;
                 gap: 4px;
             }
@@ -134,6 +132,10 @@
                 font-size: 9px;
                 padding: 4px;
                 margin: -5px -5px 5px -5px;
+            }
+            
+            .recommendations-grid {
+                gap: 4px;
             }
             
             .footer-image {
@@ -188,20 +190,9 @@
                 transform: rotate(45deg);
             }
             
-            /* Robust 2-column layout for recommendations */
             .recommendations-grid {
-                display: block !important; /* Override grid */
-            }
-            .recommendations-grid::after {
-                content: "";
-                display: table;
-                clear: both;
-            }
-            .recommendations-grid .checkbox-list {
-                width: 50%;
-                float: right;
-                box-sizing: border-box;
-                padding-left: 5px;
+                grid-template-columns: 1fr 1fr;
+                gap: 6px;
             }
             
             .goals-achievement-section {
@@ -339,23 +330,18 @@
         }
         
         @media (min-width: 768px) {
-            .header-content .flex.items-center.gap-4 {
-                flex-grow: 1;
-            }
             .info-boxes {
                 flex-direction: row;
                 gap: 12px;
                 align-items: center;
-                width: 100%;
             }
             
             .info-box {
                 height: 32px;
                 min-width: 120px;
-                flex-shrink: 0; /* Prevent other boxes from shrinking */
             }
             #schoolNameInput {
-                flex-grow: 1; /* Allow school name to grow and fill remaining space */
+                min-width: 280px; /* Increased width for school name */
             }
         }
         
@@ -582,7 +568,7 @@
                     <td>
                         <div class="checkbox-list">
                             <label><input type="checkbox" class="form-checkbox"> مشاركة فعالة في النشاطات الصفية</label>
-                            <label><input type="checkbox" class="form-checkbox"> dقة في حل التمارين والأنشطة</label>
+                            <label><input type="checkbox" class="form-checkbox"> دقة في حل التمارين والأنشطة</label>
                             <label><input type="checkbox" class="form-checkbox"> التزام بحل الواجبات وتسليمها في الوقت المحدد</label>
                             <label><input type="checkbox" class="form-checkbox"> قدرة عالية على العمل الجماعي والتعاون</label>
                             <label><input type="checkbox" class="form-checkbox"> سرعة في استيعاب المفاهيم الجديدة</label>
@@ -682,7 +668,7 @@
             
             <!-- Footer Image -->
             <div class="mt-4 flex justify-end">
-                <img src="https://h.top4top.io/p_3453yqc3h0.png" alt="شعار رسم" class="footer-image">
+                <img src="https://k.top4top.io/p_3516cnnqn0.png" alt="صورة الفوتر" class="footer-image">
             </div>
             
             <div class="mt-6 text-center no-print">

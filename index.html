@@ -63,10 +63,7 @@
                 display: none !important;
             }
             
-            /* Hide report title in header during print */
-            .header-right {
-                display: none !important;
-            }
+
             
             body {
                 font-size: 9px;
@@ -98,8 +95,8 @@
             }
             
             .ministry-logo {
-                width: 50px;
-                height: 50px;
+                width: 100px;
+                height: 100px;
             }
             
             .info-box {
@@ -120,26 +117,31 @@
             }
             
             .form-checkbox {
-                width: 10px;
-                height: 10px;
+                width: 14px;
+                height: 14px;
                 margin-left: 3px;
                 -webkit-appearance: none;
                 appearance: none;
-                border: 1px solid #000;
-                border-radius: 0 !important;
+                border: 1px solid #374151;
+                border-radius: 2px;
                 position: relative;
                 background: white;
                 display: inline-block;
             }
             
+            .form-checkbox:checked {
+                background-color: #26434B;
+                border-color: #26434B;
+            }
+            
             .form-checkbox:checked::after {
                 content: "✓";
                 position: absolute;
-                left: 1px;
+                left: 2px;
                 top: -1px;
-                font-size: 8px;
+                font-size: 10px;
                 font-weight: bold;
-                color: #000;
+                color: white;
             }
             
             .recommendations-section {
@@ -363,28 +365,7 @@
                 left: auto;
             }
             
-            .form-checkbox {
-                -webkit-appearance: none;
-                appearance: none;
-                width: 10px;
-                height: 10px;
-                border: 1px solid #000;
-                border-radius: 0 !important;
-                margin-left: 3px;
-                position: relative;
-                background: white;
-                display: inline-block;
-            }
-            
-            .form-checkbox:checked::after {
-                content: "✓";
-                position: absolute;
-                left: 0px;
-                top: -2px;
-                font-size: 8px;
-                font-weight: bold;
-                color: #000;
-            }
+
             
             .recommendations-grid {
                 grid-template-columns: 1fr 1fr;
@@ -553,7 +534,7 @@
                     <div class="info-boxes">
                         <input type="text" class="info-box" placeholder="الإدارة التعليمية">
                         <input type="text" class="info-box" placeholder="المنطقة التعليمية">
-                        <input type="text" class="info-box" placeholder="المدرسة" style="min-width: 250px; width: 250px;">
+                        <input type="text" class="info-box" placeholder="المدرسة" style="min-width: 300px; width: 300px;">
                     </div>
                 </div>
                 <div class="header-right">
@@ -882,5 +863,5 @@
             }
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'970aa20d97463757',t:'MTc1NTQ0OTAzNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'970aae4c81c4fb0d',t:'MTc1NTQ0OTUzNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

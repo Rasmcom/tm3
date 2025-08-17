@@ -154,11 +154,18 @@
             }
 
             /* Specific adjustments for weekly report to fit one page */
+            #weeklyReport {
+                line-height: 1.1; /* Reduce overall line-height */
+            }
             #weeklyReport .checkbox-list {
-                line-height: 1.05; /* Tighter line height for weekly report */
+                font-size: 6.8px; /* Reduce font size slightly */
+                line-height: 1.05; /* Tighter line height for lists */
             }
             #weeklyReport table {
-                margin-bottom: 4px; /* Even less margin for weekly report tables */
+                margin-bottom: 3px; /* Even less margin for weekly report tables */
+            }
+            #weeklyReport td {
+                padding: 1px 2px; /* Reduce vertical padding */
             }
 
             .form-checkbox {
@@ -767,4 +774,4 @@
         });
     </script>
 </body>
-</html>
+</ht

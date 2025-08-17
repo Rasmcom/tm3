@@ -10,7 +10,7 @@
         /* General page setup for printing */
         @page {
             size: A4 portrait;
-            margin: 0.4cm; /* Further reduced margin */
+            margin: 0.4cm; 
         }
         
         body {
@@ -42,11 +42,11 @@
             }
 
             html, body {
-                width: 210mm; /* A4 width */
+                width: 210mm; 
                 margin: 0;
                 padding: 0;
-                font-size: 8px; /* Base font size for print */
-                line-height: 1.15; /* Slightly reduced line height */
+                font-size: 8px; 
+                line-height: 1.15; 
             }
             
             .form-container {
@@ -64,129 +64,119 @@
                 display: none !important;
             }
             
-            /* Fix for header layout on desktop print */
             .header-content {
                 padding: 8px !important;
-                flex-direction: column !important; /* Stack header items */
-                align-items: center !important; /* Center them horizontally */
-                gap: 8px !important;
-            }
-            .header-right {
-                text-align: center; /* Ensure title is centered */
-                width: 100%;
+                flex-direction: row !important;
+                justify-content: space-between !important;
+                align-items: center !important;
             }
             .info-boxes {
                 flex-direction: column !important;
-                align-items: center !important; /* Center info boxes under logo */
+                align-items: flex-start !important;
+                gap: 4px !important;
             }
             
-            /* Compact layout adjustments */
             .section-title {
-                font-size: 10px;
-                padding: 4px;
-                margin: 6px 0 4px 0; /* Reduced vertical margin */
+                font-size: 11px;
+                font-weight: bold;
+                padding: 5px;
+                margin: 8px 0 5px 0;
             }
             
             table {
-                font-size: 7px;
-                margin-bottom: 5px; /* Reduced margin */
+                font-size: 7.5px;
+                margin-bottom: 5px; 
                 page-break-inside: avoid;
             }
             
             th, td {
                 padding: 2px;
-                font-size: 7px;
+                font-size: 7.5px;
             }
-            
-            .header-content h1 {
-                font-size: 12px;
+
+            td input, td textarea {
+                font-size: 7.5px !important;
+                padding: 2px;
+                background-color: #fff !important;
+                border: 1px solid #ccc !important;
             }
             
             .ministry-logo {
-                width: 45px;
-                height: 45px;
+                width: 50px;
+                height: 50px;
             }
             
             .info-box {
-                height: 16px;
-                font-size: 7px;
+                height: 18px;
+                font-size: 7.5px;
                 padding: 2px 4px;
             }
             
             .checkbox-list {
-                font-size: 7px;
-                line-height: 1.1;
-                padding: 3px; /* Reduced padding */
+                font-size: 7.5px;
+                line-height: 1.2;
+                padding: 3px;
             }
             
             .checkbox-list label {
-                margin-bottom: 1px !important;
-                gap: 3px;
-            }
-            
-            .form-checkbox {
-                width: 8px;
-                height: 8px;
-                margin-left: 2px;
+                margin-bottom: 2px !important;
+                gap: 4px;
             }
             
             .recommendations-section {
-                margin-top: 5px; /* Reduced margin */
-                padding: 5px; /* Reduced padding */
+                margin-top: 5px; 
+                padding: 5px; 
             }
             
             .recommendations-title {
-                font-size: 8px;
+                font-size: 9px;
                 padding: 4px;
-                margin: -5px -5px 5px -5px; /* Adjusted for new padding */
+                margin: -5px -5px 5px -5px;
             }
             
             .recommendations-grid {
-                gap: 4px; /* Reduced gap */
+                gap: 4px;
             }
             
             .footer-image {
-                height: 40px; /* Reduced footer image size */
+                height: 40px;
             }
             
             #dailyReport, #weeklyReport {
-                padding: 8px !important; /* Reduced padding */
+                padding: 8px !important;
             }
-
-            /* Specific adjustments for weekly report to fit one page */
-            #weeklyReport {
-                line-height: 1.1; /* Reduce overall line-height */
-            }
+            
             #weeklyReport .checkbox-list {
-                font-size: 6.8px; /* Reduce font size slightly */
-                line-height: 1.05; /* Tighter line height for lists */
+                font-size: 7.2px;
+                line-height: 1.1;
             }
             #weeklyReport table {
-                margin-bottom: 3px; /* Even less margin for weekly report tables */
+                margin-bottom: 4px;
             }
             #weeklyReport td {
-                padding: 1px 2px; /* Reduce vertical padding */
+                padding: 1.5px 2px;
             }
 
             .form-checkbox {
                 -webkit-appearance: none;
                 appearance: none;
-                width: 10px;
-                height: 10px;
+                width: 12px;
+                height: 12px;
                 border: 1px solid #000;
-                border-radius: 0 !important;
+                border-radius: 2px !important;
                 margin-left: 3px;
                 position: relative;
                 background: white;
                 display: inline-block;
+                vertical-align: middle;
             }
             
             .form-checkbox:checked::after {
-                content: "✓";
+                content: "✔";
                 position: absolute;
-                left: 0px;
+                left: 1px;
                 top: -2px;
-                font-size: 8px;
+                font-size: 10px;
                 font-weight: bold;
                 color: #000;
             }
@@ -199,7 +189,7 @@
             .goals-achievement-section {
                 display: grid !important;
                 grid-template-columns: 1fr 1fr !important;
-                gap: 6px !important; /* Reduced gap */
+                gap: 6px !important;
             }
             
             .goals-achievement-section .recommendations-section {
@@ -407,9 +397,6 @@
                         <input type="text" id="schoolNameInput" class="info-box" placeholder="المدرسة">
                     </div>
                 </div>
-                <div class="header-right">
-                    <h1 id="reportTitle" class="text-xl font-bold">تقرير الإنجاز</h1>
-                </div>
             </div>
         </div>
         <div class="gradient-line"></div>
@@ -438,7 +425,7 @@
 
         <!-- Daily Report -->
         <div id="dailyReport" class="hidden bg-white p-6">
-            <div class="section-title">التقرير اليومي</div>
+            <div id="reportTitleDaily" class="section-title">تقرير الإنجاز اليومي</div>
             
             <!-- Basic Info Table (4 columns) -->
             <table>
@@ -450,14 +437,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <select class="w-full">
-                            <option value="">اختر اليوم</option>
-                            <option value="الأحد">الأحد</option>
-                            <option value="الاثنين">الاثنين</option>
-                            <option value="الثلاثاء">الثلاثاء</option>
-                            <option value="الأربعاء">الأربعاء</option>
-                            <option value="الخميس">الخميس</option>
-                        </select>
+                        <input type="text" placeholder="اكتب اليوم">
                     </td>
                     <td><input type="date"></td>
                     <td><input type="text" placeholder="مثال: الثالث الابتدائي"></td>
@@ -470,7 +450,7 @@
                 <div class="recommendations-section">
                     <div class="recommendations-title">أهداف الدرس</div>
                     <div class="p-4">
-                        <textarea rows="5" class="w-full border border-gray-300 rounded p-2" placeholder="اكتب أهداف الدرس..."></textarea>
+                        <textarea rows="6" class="w-full border border-gray-300 rounded p-2" placeholder="اكتب أهداف الدرس..."></textarea>
                     </div>
                 </div>
                 <div class="recommendations-section">
@@ -549,7 +529,7 @@
 
         <!-- Weekly Report -->
         <div id="weeklyReport" class="hidden bg-white p-6">
-            <div class="section-title">التقرير الأسبوعي</div>
+            <div id="reportTitleWeekly" class="section-title">تقرير الإنجاز الأسبوعي</div>
             
             <!-- Basic Info Table (3 columns) -->
             <table>
@@ -560,27 +540,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <select class="w-full">
-                            <option value="">اختر الأسبوع</option>
-                            <option value="الأسبوع الأول">الأسبوع الأول</option>
-                            <option value="الأسبوع الثاني">الأسبوع الثاني</option>
-                            <option value="الأسبوع الثالث">الأسبوع الثالث</option>
-                            <option value="الأسبوع الرابع">الأسبوع الرابع</option>
-                            <option value="الأسبوع الخامس">الأسبوع الخامس</option>
-                            <option value="الأسبوع السادس">الأسبوع السادس</option>
-                            <option value="الأسبوع السابع">الأسبوع السابع</option>
-                            <option value="الأسبوع الثامن">الأسبوع الثامن</option>
-                            <option value="الأسبوع التاسع">الأسبوع التاسع</option>
-                            <option value="الأسبوع العاشر">الأسبوع العاشر</option>
-                            <option value="الأسبوع الحادي عشر">الأسبوع الحادي عشر</option>
-                            <option value="الأسبوع الثاني عشر">الأسبوع الثاني عشر</option>
-                            <option value="الأسبوع الثالث عشر">الأسبوع الثالث عشر</option>
-                            <option value="الأسبوع الرابع عشر">الأسبوع الرابع عشر</option>
-                            <option value="الأسبوع الخامس عشر">الأسبوع الخامس عشر</option>
-                            <option value="الأسبوع السادس عشر">الأسبوع السادس عشر</option>
-                            <option value="الأسبوع السابع عشر">الأسبوع السابع عشر</option>
-                            <option value="الأسبوع الثامن عشر">الأسبوع الثامن عشر</option>
-                        </select>
+                        <input type="text" placeholder="اكتب الأسبوع">
                     </td>
                     <td><input type="text" placeholder="مثال: الفترة الأولى"></td>
                     <td><textarea rows="2" placeholder="اذكر الدروس المنفذة..."></textarea></td>
@@ -725,20 +685,16 @@
             const reportType = document.getElementById('reportType').value;
             const dailyReport = document.getElementById('dailyReport');
             const weeklyReport = document.getElementById('weeklyReport');
-            const reportTitle = document.getElementById('reportTitle');
             
             if (reportType === 'daily') {
                 dailyReport.classList.remove('hidden');
                 weeklyReport.classList.add('hidden');
-                reportTitle.textContent = 'تقرير الإنجاز اليومي';
             } else if (reportType === 'weekly') {
                 weeklyReport.classList.remove('hidden');
                 dailyReport.classList.add('hidden');
-                reportTitle.textContent = 'تقرير الإنجاز الأسبوعي';
             } else {
                 dailyReport.classList.add('hidden');
                 weeklyReport.classList.add('hidden');
-                reportTitle.textContent = 'تقرير الإنجاز';
             }
         }
 

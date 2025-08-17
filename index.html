@@ -95,14 +95,14 @@
             }
             
             .ministry-logo {
-                width: 100px;
-                height: 100px;
+                width: 120px;
+                height: 120px;
             }
             
             .info-box {
-                height: 18px;
-                font-size: 8px;
-                padding: 3px 6px;
+                height: 24px;
+                font-size: 10px;
+                padding: 4px 8px;
             }
             
             .school-name-box {
@@ -200,8 +200,8 @@
         }
         
         .ministry-logo {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             background: white;
             border-radius: 8px;
             display: flex;
@@ -224,7 +224,7 @@
         }
         
         .info-box {
-            height: 28px;
+            height: 40px;
             border: 2px solid #e5e7eb;
             border-radius: 6px;
             display: flex;
@@ -233,7 +233,7 @@
             background: #f9fafb;
             font-weight: 600;
             color: #374151;
-            font-size: 12px;
+            font-size: 14px;
             padding: 4px 8px;
         }
         
@@ -404,44 +404,124 @@
                 margin: 0;
                 box-shadow: none;
                 border-radius: 0;
+                padding: 0;
             }
             
             .header-content {
                 flex-direction: column;
-                gap: 12px;
+                gap: 15px;
                 text-align: center;
-            }
-            
-            .header-right {
-                order: -1;
+                padding: 20px !important;
             }
             
             .ministry-logo {
-                width: 90px;
-                height: 90px;
+                width: 100px;
+                height: 100px;
                 margin: 0 auto;
             }
             
             .info-boxes {
                 flex-direction: column;
                 width: 100%;
-                max-width: 400px;
-                margin: 0 auto;
+                gap: 12px;
             }
             
             .info-box {
                 width: 100% !important;
                 min-width: auto !important;
+                height: 40px;
+                font-size: 14px;
+            }
+            
+            .school-name-box {
+                min-width: 100% !important;
+                width: 100% !important;
+            }
+            
+            #dailyReport, #weeklyReport {
+                padding: 15px !important;
+            }
+            
+            .section-title {
+                font-size: 18px;
+                padding: 15px;
+                margin: 15px 0;
             }
         }
         
         @media (max-width: 768px) {
+            .header-content {
+                padding: 15px !important;
+            }
+            
+            .ministry-logo {
+                width: 90px;
+                height: 90px;
+            }
+            
+            .info-box {
+                height: 32px;
+                font-size: 12px;
+                padding: 4px 8px;
+            }
+            
             table {
                 font-size: 12px;
+                margin-bottom: 15px;
             }
             
             th, td {
                 padding: 6px 4px;
+                font-size: 12px;
+                line-height: 1.2;
+            }
+            
+            .checkbox-list {
+                font-size: 12px;
+                padding: 8px;
+                line-height: 1.3;
+            }
+            
+            .checkbox-list label {
+                margin-bottom: 4px;
+                gap: 6px;
+            }
+            
+            .form-checkbox {
+                width: 14px;
+                height: 14px;
+            }
+            
+            .recommendations-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .goals-achievement-section {
+                grid-template-columns: 1fr !important;
+                gap: 15px;
+            }
+            
+            .footer-image {
+                height: 50px;
+            }
+            
+            select, input[type="text"], input[type="date"], textarea {
+                font-size: 12px;
+                padding: 6px;
+                height: auto;
+            }
+            
+            .section-title {
+                font-size: 16px;
+                padding: 12px;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .header-content {
+                padding: 12px !important;
+                gap: 12px;
             }
             
             .ministry-logo {
@@ -449,33 +529,65 @@
                 height: 80px;
             }
             
-            .footer-image {
-                height: 45px;
+            .info-box {
+                height: 28px;
+                font-size: 12px;
+                padding: 4px 8px;
             }
             
-            .recommendations-grid {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
-            
-            .goals-achievement-section {
-                grid-template-columns: 1fr !important;
-                gap: 10px;
-            }
-        }
-        
-        @media (max-width: 640px) {
-            .form-container {
-                padding: 0;
+            #dailyReport, #weeklyReport {
+                padding: 12px !important;
             }
             
             table {
                 font-size: 11px;
+                overflow-x: auto;
+                display: block;
+                white-space: nowrap;
+            }
+            
+            table tbody {
+                display: table;
+                width: 100%;
             }
             
             th, td {
-                padding: 4px 2px;
-                font-size: 10px;
+                padding: 5px 3px;
+                font-size: 11px;
+                white-space: normal;
+                word-wrap: break-word;
+            }
+            
+            .checkbox-list {
+                font-size: 11px;
+                padding: 8px;
+            }
+            
+            .checkbox-list label {
+                margin-bottom: 4px;
+                line-height: 1.3;
+            }
+            
+            .form-checkbox {
+                width: 14px;
+                height: 14px;
+            }
+            
+            .section-title {
+                font-size: 14px;
+                padding: 10px;
+                margin: 10px 0;
+            }
+            
+            .footer-image {
+                height: 45px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header-content {
+                padding: 10px !important;
+                gap: 10px;
             }
             
             .ministry-logo {
@@ -483,36 +595,68 @@
                 height: 70px;
             }
             
-            .footer-image {
-                height: 40px;
+            .info-box {
+                height: 28px;
+                font-size: 12px;
+                padding: 4px 8px;
+            }
+            
+            #dailyReport, #weeklyReport {
+                padding: 10px !important;
+            }
+            
+            table {
+                font-size: 10px;
+                margin-bottom: 15px;
+            }
+            
+            th, td {
+                padding: 4px 2px;
+                font-size: 10px;
+                line-height: 1.2;
             }
             
             .checkbox-list {
-                font-size: 11px;
+                font-size: 10px;
+                padding: 6px;
             }
             
             .checkbox-list label {
-                margin-bottom: 6px;
+                margin-bottom: 3px;
+                line-height: 1.3;
             }
             
             .form-checkbox {
                 width: 12px;
                 height: 12px;
             }
+            
+            .section-title {
+                font-size: 13px;
+                padding: 8px;
+                margin: 8px 0;
+            }
+            
+            .footer-image {
+                height: 40px;
+            }
+            
+            select, input[type="text"], input[type="date"], textarea {
+                font-size: 12px;
+                padding: 6px;
+                border-radius: 4px;
+            }
+            
+            button {
+                font-size: 14px;
+                padding: 8px 15px;
+                border-radius: 4px;
+            }
         }
         
-        @media (max-width: 480px) {
+        @media (max-width: 360px) {
             .header-content {
-                padding: 12px !important;
-            }
-            
-            table {
-                font-size: 10px;
-            }
-            
-            th, td {
-                padding: 3px 1px;
-                font-size: 9px;
+                padding: 8px !important;
             }
             
             .ministry-logo {
@@ -520,13 +664,33 @@
                 height: 60px;
             }
             
-            .section-title {
-                font-size: 14px;
-                padding: 8px;
+            .info-box {
+                height: 26px;
+                font-size: 11px;
+                padding: 3px 6px;
+            }
+            
+            table {
+                font-size: 9px;
+            }
+            
+            th, td {
+                padding: 3px 2px;
+                font-size: 9px;
             }
             
             .checkbox-list {
-                font-size: 10px;
+                font-size: 9px;
+                padding: 4px;
+            }
+            
+            .form-checkbox {
+                width: 11px;
+                height: 11px;
+            }
+            
+            .section-title {
+                font-size: 12px;
                 padding: 6px;
             }
             
@@ -551,9 +715,7 @@
                         <input type="text" class="info-box school-name-box" placeholder="المدرسة" style="min-width: 450px; width: 450px;">
                     </div>
                 </div>
-                <div class="header-right">
-                    <h1 id="reportTitle" class="text-xl font-bold">تقرير الإنجاز</h1>
-                </div>
+
             </div>
         </div>
         <div class="gradient-line"></div>
@@ -681,57 +843,70 @@
                 </tr>
             </table>
 
-            <!-- Educational Activities Section -->
-            <table style="margin-top: 20px;">
+            <!-- Educational Activities Table -->
+            <table style="margin-top: 15px;">
                 <tr>
-                    <th colspan="4" style="background: #26434B; color: white; text-align: center; padding: 8px;">الأنشطة التعليمية المنفذة</th>
+                    <th colspan="3" style="background: #26434B; color: white; text-align: center; padding: 8px;">الأنشطة التعليمية المنفذة</th>
                 </tr>
                 <tr>
-                    <th style="width: 25%;">طريقة التدريس أو الاستراتيجية المستخدمة</th>
-                    <th style="width: 25%;">الوسائل التعليمية المستخدمة</th>
-                    <th style="width: 25%;">الواجبات والأنشطة المكملة</th>
-                    <th style="width: 25%;">متابعة واجبات اليوم السابق</th>
+                    <th style="width: 33.33%;">الأنشطة الصفية</th>
+                    <th style="width: 33.33%;">الوسائل التعليمية المستخدمة</th>
+                    <th style="width: 33.33%;">استراتيجيات التدريس المطبقة</th>
                 </tr>
                 <tr>
                     <td>
                         <div class="checkbox-list">
-                            <label><input type="checkbox" class="form-checkbox"> محاضرة</label>
-                            <label><input type="checkbox" class="form-checkbox"> مناقشة</label>
-                            <label><input type="checkbox" class="form-checkbox"> تعلم تعاوني</label>
-                            <label><input type="checkbox" class="form-checkbox"> تجربة عملية</label>
-                            <label><input type="checkbox" class="form-checkbox"> تعليم مدمج</label>
-                            <label><input type="checkbox" class="form-checkbox"> العصف الذهني</label>
-                            <label><input type="checkbox" class="form-checkbox"> التعلم القائم على المشروعات</label>
-                            <label><input type="checkbox" class="form-checkbox"> لعب الأدوار</label>
+                            <label><input type="checkbox" class="form-checkbox"> نشاط جماعي تفاعلي</label>
+                            <label><input type="checkbox" class="form-checkbox"> نشاط فردي موجه</label>
+                            <label><input type="checkbox" class="form-checkbox"> تجربة عملية أو مخبرية</label>
+                            <label><input type="checkbox" class="form-checkbox"> مناقشة صفية</label>
+                            <label><input type="checkbox" class="form-checkbox"> عرض تقديمي من الطلاب</label>
+                            <label><input type="checkbox" class="form-checkbox"> حل مسائل وتمارين</label>
+                            <label><input type="checkbox" class="form-checkbox"> لعبة تعليمية</label>
+                            <label><input type="checkbox" class="form-checkbox"> مشروع صفي قصير</label>
+                            <label><input type="checkbox" class="form-checkbox"> قراءة جماعية</label>
+                            <label><input type="checkbox" class="form-checkbox"> كتابة إبداعية</label>
+                            <label><input type="checkbox" class="form-checkbox"> رسم أو تلوين تعليمي</label>
+                            <label><input type="checkbox" class="form-checkbox"> محاكاة أو تمثيل أدوار</label>
                         </div>
                     </td>
                     <td>
                         <div class="checkbox-list">
-                            <label><input type="checkbox" class="form-checkbox"> سبورة</label>
+                            <label><input type="checkbox" class="form-checkbox"> السبورة الذكية</label>
                             <label><input type="checkbox" class="form-checkbox"> عرض بوربوينت</label>
                             <label><input type="checkbox" class="form-checkbox"> فيديو تعليمي</label>
-                            <label><input type="checkbox" class="form-checkbox"> كتاب مدرسي</label>
-                            <label><input type="checkbox" class="form-checkbox"> وسيلة علمية (مجسم – لوحة – بطاقات تعليمية)</label>
-                            <label><input type="checkbox" class="form-checkbox"> منصة تعليمية (مدرستي – كلاس روم)</label>
-                            <label><input type="checkbox" class="form-checkbox"> أنشطة تفاعلية عبر تطبيقات (Kahoot – Quizizz)</label>
+                            <label><input type="checkbox" class="form-checkbox"> صور ومخططات</label>
+                            <label><input type="checkbox" class="form-checkbox"> مجسمات ونماذج</label>
+                            <label><input type="checkbox" class="form-checkbox"> بطاقات تعليمية</label>
+                            <label><input type="checkbox" class="form-checkbox"> الكتاب المدرسي</label>
+                            <label><input type="checkbox" class="form-checkbox"> أوراق عمل</label>
+                            <label><input type="checkbox" class="form-checkbox"> تطبيقات تفاعلية</label>
+                            <label><input type="checkbox" class="form-checkbox"> خرائط ذهنية</label>
+                            <label><input type="checkbox" class="form-checkbox"> أدوات مخبرية</label>
+                            <label><input type="checkbox" class="form-checkbox"> مواد بيئية طبيعية</label>
                         </div>
                     </td>
                     <td>
                         <div class="checkbox-list">
-                            <label><input type="checkbox" class="form-checkbox"> نشاط صفي</label>
-                            <label><input type="checkbox" class="form-checkbox"> واجب منزلي</label>
-                            <label><input type="checkbox" class="form-checkbox"> بحث فردي أو جماعي</label>
-                            <label><input type="checkbox" class="form-checkbox"> عمل جماعي (مشروع صغير – نشاط تطبيقي)</label>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-list">
-                            <label><input type="checkbox" class="form-checkbox"> تم التطبيق</label>
-                            <label><input type="checkbox" class="form-checkbox"> لم يتم التطبيق</label>
+                            <label><input type="checkbox" class="form-checkbox"> التعلم التعاوني</label>
+                            <label><input type="checkbox" class="form-checkbox"> التعلم النشط</label>
+                            <label><input type="checkbox" class="form-checkbox"> العصف الذهني</label>
+                            <label><input type="checkbox" class="form-checkbox"> حل المشكلات</label>
+                            <label><input type="checkbox" class="form-checkbox"> التعلم بالاستقصاء</label>
+                            <label><input type="checkbox" class="form-checkbox"> التعلم القائم على المشروعات</label>
+                            <label><input type="checkbox" class="form-checkbox"> المناقشة والحوار</label>
+                            <label><input type="checkbox" class="form-checkbox"> التعلم باللعب</label>
+                            <label><input type="checkbox" class="form-checkbox"> القصة التعليمية</label>
+                            <label><input type="checkbox" class="form-checkbox"> التعلم المدمج</label>
+                            <label><input type="checkbox" class="form-checkbox"> التعلم الذاتي الموجه</label>
+                            <label><input type="checkbox" class="form-checkbox"> التفكير الناقد</label>
                         </div>
                     </td>
                 </tr>
             </table>
+
+
+
         </div>
 
         <!-- Weekly Report -->
@@ -901,57 +1076,8 @@
                 </tr>
             </table>
 
-            <!-- Educational Activities Section -->
-            <table style="margin-top: 20px;">
-                <tr>
-                    <th colspan="4" style="background: #26434B; color: white; text-align: center; padding: 8px;">الأنشطة التعليمية المنفذة</th>
-                </tr>
-                <tr>
-                    <th style="width: 25%;">طريقة التدريس أو الاستراتيجية المستخدمة</th>
-                    <th style="width: 25%;">الوسائل التعليمية المستخدمة</th>
-                    <th style="width: 25%;">الواجبات والأنشطة المكملة</th>
-                    <th style="width: 25%;">متابعة واجبات اليوم السابق</th>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="checkbox-list">
-                            <label><input type="checkbox" class="form-checkbox"> محاضرة</label>
-                            <label><input type="checkbox" class="form-checkbox"> مناقشة</label>
-                            <label><input type="checkbox" class="form-checkbox"> تعلم تعاوني</label>
-                            <label><input type="checkbox" class="form-checkbox"> تجربة عملية</label>
-                            <label><input type="checkbox" class="form-checkbox"> تعليم مدمج</label>
-                            <label><input type="checkbox" class="form-checkbox"> العصف الذهني</label>
-                            <label><input type="checkbox" class="form-checkbox"> التعلم القائم على المشروعات</label>
-                            <label><input type="checkbox" class="form-checkbox"> لعب الأدوار</label>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-list">
-                            <label><input type="checkbox" class="form-checkbox"> سبورة</label>
-                            <label><input type="checkbox" class="form-checkbox"> عرض بوربوينت</label>
-                            <label><input type="checkbox" class="form-checkbox"> فيديو تعليمي</label>
-                            <label><input type="checkbox" class="form-checkbox"> كتاب مدرسي</label>
-                            <label><input type="checkbox" class="form-checkbox"> وسيلة علمية (مجسم – لوحة – بطاقات تعليمية)</label>
-                            <label><input type="checkbox" class="form-checkbox"> منصة تعليمية (مدرستي – كلاس روم)</label>
-                            <label><input type="checkbox" class="form-checkbox"> أنشطة تفاعلية عبر تطبيقات (Kahoot – Quizizz)</label>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-list">
-                            <label><input type="checkbox" class="form-checkbox"> نشاط صفي</label>
-                            <label><input type="checkbox" class="form-checkbox"> واجب منزلي</label>
-                            <label><input type="checkbox" class="form-checkbox"> بحث فردي أو جماعي</label>
-                            <label><input type="checkbox" class="form-checkbox"> عمل جماعي (مشروع صغير – نشاط تطبيقي)</label>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-list">
-                            <label><input type="checkbox" class="form-checkbox"> تم التطبيق</label>
-                            <label><input type="checkbox" class="form-checkbox"> لم يتم التطبيق</label>
-                        </div>
-                    </td>
-                </tr>
-            </table>
+
+
         </div>
 
         <!-- Footer -->
@@ -983,20 +1109,16 @@
             const reportType = document.getElementById('reportType').value;
             const dailyReport = document.getElementById('dailyReport');
             const weeklyReport = document.getElementById('weeklyReport');
-            const reportTitle = document.getElementById('reportTitle');
             
             if (reportType === 'daily') {
                 dailyReport.classList.remove('hidden');
                 weeklyReport.classList.add('hidden');
-                reportTitle.textContent = 'تقرير الإنجاز اليومي';
             } else if (reportType === 'weekly') {
                 weeklyReport.classList.remove('hidden');
                 dailyReport.classList.add('hidden');
-                reportTitle.textContent = 'تقرير الإنجاز الأسبوعي';
             } else {
                 dailyReport.classList.add('hidden');
                 weeklyReport.classList.add('hidden');
-                reportTitle.textContent = 'تقرير الإنجاز';
             }
         }
 
@@ -1026,5 +1148,5 @@
             }
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'970ae15aa3c6edc8',t:'MTc1NTQ1MTYyNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'970b3d8ed0f43dc6',t:'MTc1NTQ1NTQwMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

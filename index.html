@@ -339,18 +339,23 @@
         }
         
         @media (min-width: 768px) {
+            .header-content .flex.items-center.gap-4 {
+                flex-grow: 1;
+            }
             .info-boxes {
                 flex-direction: row;
                 gap: 12px;
                 align-items: center;
+                width: 100%;
             }
             
             .info-box {
                 height: 32px;
-                min-width: 120px;
+                min-width: 180px;
+                flex-shrink: 0; /* Prevent other boxes from shrinking */
             }
             #schoolNameInput {
-                min-width: 420px; /* Increased width for school name */
+                flex-grow: 1; /* Allow school name to grow and fill remaining space */
             }
         }
         
@@ -577,7 +582,7 @@
                     <td>
                         <div class="checkbox-list">
                             <label><input type="checkbox" class="form-checkbox"> مشاركة فعالة في النشاطات الصفية</label>
-                            <label><input type="checkbox" class="form-checkbox"> دقة في حل التمارين والأنشطة</label>
+                            <label><input type="checkbox" class="form-checkbox"> dقة في حل التمارين والأنشطة</label>
                             <label><input type="checkbox" class="form-checkbox"> التزام بحل الواجبات وتسليمها في الوقت المحدد</label>
                             <label><input type="checkbox" class="form-checkbox"> قدرة عالية على العمل الجماعي والتعاون</label>
                             <label><input type="checkbox" class="form-checkbox"> سرعة في استيعاب المفاهيم الجديدة</label>
@@ -677,7 +682,7 @@
             
             <!-- Footer Image -->
             <div class="mt-4 flex justify-end">
-                <img src="https://k.top4top.io/p_3516cnnqn0.png" alt="صورة الفوتر" class="footer-image">
+                <img src="https://h.top4top.io/p_3453yqc3h0.png" alt="شعار رسم" class="footer-image">
             </div>
             
             <div class="mt-6 text-center no-print">
